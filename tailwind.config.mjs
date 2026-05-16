@@ -13,9 +13,9 @@ export default {
         'secondary': "#0DA8A8",
         'black': "#323232",
 
-        'white': "#FAFAFA",
-        'blue': "#086EC2",
-        'yellow': "#ECBE5C",
+        'white': "#F4F4F5",
+        // 'blue': "#086EC2",
+        // 'yellow': "#ECBE5C",
         'primary-light': "#F3AAB5",
         'secondary-light': "#C5E6E6",
     },
