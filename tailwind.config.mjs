@@ -2,7 +2,24 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    extend: {},
+    extend: {
+      // fontFamily: {
+      //   'sans': ['Roboto'],
+      //   decimal: ['Decimal'],
+      //   'decimal-medium': ['Decimal Medium', 'Decimal', 'sans-serif'],
+      // },
+      colors: {
+        'primary': "#E6546B",
+        'secondary': "#0DA8A8",
+        'black': "#323232",
+
+        'white': "#FAFAFA",
+        'blue': "#086EC2",
+        'yellow': "#ECBE5C",
+        'primary-light': "#F3AAB5",
+        'secondary-light': "#C5E6E6",
+    },
+  },  
   },
   plugins: [],
 };

@@ -1,0 +1,106 @@
+---
+export interface Props {
+  /** filled | outlined | ghosted */
+  variant?: 'filled' | 'outlined' | 'ghosted';
+  /** primary | secondary | blue | yellow */
+  color?: 'primary' | 'secondary' | 'blue' | 'yellow';
+  /** Texto del botón (alternativa al slot) */
+  label?: string;
+  /** URL de destino; si existe, renderiza un enlace */
+  href?: string;
+  /** Tipo cuando se renderiza como <button> */
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  rel?: string;
+  disabled?: boolean;
+  'aria-label'?: string;
+}
+
+const {
+  variant = 'filled',
+  color = 'primary',
+  label,
+  href,
+  type = 'button',
+  class: className = '',
+  target,
+  rel,
+  disabled = false,
+  'aria-label': ariaLabel,
+} = Astro.props;
+
+type Variant = NonNullable<Props['variant']>;
+type Color = NonNullable<Props['color']>;
+
+const variantClasses: Record<Color, Record<Variant, string>> = {
+  primary: {
+    filled:
+      'bg-primary text-white shadow-sm hover:bg-primary/90 focus-visible:ring-primary',
+    outlined:
+      'border-2 border-primary bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary',
+    ghosted:
+      'bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary',
+  },
+  secondary: {
+    filled:
+      'bg-secondary text-white shadow-sm hover:bg-secondary/90 focus-visible:ring-secondary',
+    outlined:
+      'border-2 border-secondary bg-transparent text-secondary hover:bg-secondary/10 focus-visible:ring-secondary',
+    ghosted:
+      'bg-transparent text-secondary hover:bg-secondary/10 focus-visible:ring-secondary',
+  },
+  blue: {
+    filled:
+      'bg-blue text-white shadow-sm hover:bg-blue/90 focus-visible:ring-blue',
+    outlined:
+      'border-2 border-blue bg-transparent text-blue hover:bg-blue/10 focus-visible:ring-blue',
+    ghosted:
+      'bg-transparent text-blue hover:bg-blue/10 focus-visible:ring-blue',
+  },
+  yellow: {
+    filled:
+      'bg-yellow text-black shadow-sm hover:bg-yellow/90 focus-visible:ring-yellow',
+    outlined:
+      'border-2 border-yellow bg-transparent text-yellow hover:bg-yellow/10 focus-visible:ring-yellow',
+    ghosted:
+      'bg-transparent text-yellow hover:bg-yellow/10 focus-visible:ring-yellow',
+  },
+};
+
+const baseClasses =
+  'inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
+
+const classes = [
+  baseClasses,
+  variantClasses[color][variant],
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+
+const linkRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={classes}
+      target={target}
+      rel={linkRel}
+      aria-label={ariaLabel}
+    >
+      <slot>{label}</slot>
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={classes}
+      disabled={disabled}
+      aria-label={ariaLabel}
+    >
+      <slot>{label}</slot>
+    </button>
+  )
+}

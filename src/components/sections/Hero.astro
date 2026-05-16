@@ -1,7 +1,37 @@
-<section id="hero" class="min-h-[30vh]" aria-labelledby="hero-heading">
-  <div class="py-8">
-    <h2 id="hero-heading" class="text-2xl font-bold text-neutral-900">Hero</h2>
-    <!-- Contenido pendiente -->
-    <div class="mt-4 min-h-8" aria-hidden="true"></div>
+---
+import Button from "../inputs/Button.astro";
+import MapPin from "../../assets/icons/MapPin.astro";
+---
+
+<section
+  id="hero"
+  class="h-72 flex items-center justify-center"
+  aria-labelledby="hero-heading"
+>
+  <div class="flex flex-col justify-center gap-4 py-8 w-1/2">
+    <div>
+    <h2 class="text-3xl font-bold text-black">Organiza tu evento</h2>
+    <h2 class="text-3xl font-bold text-primary">sin estrés</h2>
+    </div>
+    <p class="text-sm text-black font-medium">
+      Conecta con proveedores locales confiables, compara opciones y encuentra
+      todo lo que necesitas para celebrar momentos inolvidables.
+    </p>
+    <div>
+      <Button
+        variant="filled"
+        color="primary"
+        href="#categorias"
+        label="Explorar servicios"
+      />
+    </div>
+    <div class="flex gap-2">
+      <MapPin class="h-10 w-10 text-secondary" />
+      <div class="flex flex-col text-sm font-semibold">
+        <p>Servicios disponibles en</p>
+        <p class="text-sm text-secondary">Torreón, Gómez Palacio</p>
+      </div>
+    </div>
   </div>
+  <div class="rounded-lg bg-primary-light p-8 w-1/2 h-full"></div>
 </section>
