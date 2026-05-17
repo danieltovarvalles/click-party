@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import Button from "../inputs/Button.astro";
 import EventCountdown from "../EventCountdown.astro";
-import nextEvent from "../../assets/images/group-friends-having-party-kitchen.jpg";
+import nextEvent from "../../assets/images/event.jpg";
 ---
 
 <section
@@ -33,7 +33,7 @@ import nextEvent from "../../assets/images/group-friends-having-party-kitchen.jp
       targetDate="2026-06-21T16:00:00-06:00"
       dateLabel="21 de junio, 2026"
       timeLabel="4:00 PM"
-      locationLabel="Guadalajara, Jalisco"
+      locationLabel="Torreón, Coahuila"
       heading="Faltan para nuestro evento"
     />
   </div>
@@ -41,7 +41,7 @@ import nextEvent from "../../assets/images/group-friends-having-party-kitchen.jp
     <Image
       src={nextEvent}
       alt="Next Event"
-      class="h-full w-full rounded-lg object-cover"
+      class="max-h-48 md:max-h-none h-full w-full rounded-lg object-cover"
       inferSize
     />
   </div>

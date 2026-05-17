@@ -15,7 +15,7 @@ export default {
         'white-brand': "#FAFAFA",
 
         'primary-light': "#ffe4e6",
-        'secondary-light': "#ccfbf1",
+        'secondary-light': "#dcfffa",
 
         'yellow-brand': "#FBBF24",
         'blue-brand': "#38BDF8",
