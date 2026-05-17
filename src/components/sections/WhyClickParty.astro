@@ -1,45 +1,59 @@
 ---
+import { Image } from "astro:assets";
 import { reasonsWhy } from "../../data/ReasonsWhy";
+import whyImage from "../../assets/images/girls-boy-with-balloons.jpg";
+
+// const colorClasses = {
+//   green: "text-blue-brand bg-blue-brand/10",
+//   red: "text-pink-brand bg-pink-brand/10",
+//   yellow: "text-yellow-brand bg-yellow-brand/10",
+// };
 
 const colorClasses = {
-  green: "text-green-600 bg-green-100/50",
-  red: "text-red-600 bg-red-100/50",
-  yellow: "text-yellow-600 bg-yellow-100/50",
+  green: "text-white bg-secondary",
+  red: "text-white bg-primary",
+  yellow: "text-white bg-yellow-brand",
 };
 ---
 
 <section
   id="why-click-party"
-  class="grid grid-cols-6 gap-6 bg-primary-light/20 p-8 rounded-2xl"
+  class="grid grid-cols-6 gap-4 lg:gap-6 rounded-2xl [contain:layout_style_paint]"
   aria-labelledby="why-click-party-heading"
 >
-  <img
-    src="/src/assets/images/girls-boy-with-balloons.jpg"
-    alt="Click & Party"
-    class="h-full rounded-lg object-cover "
-  />
-  <div class="flex flex-col gap-2 col-span-2">
-    <h5 class="text-primary font-bold">¿Por qué creamos Click &amp; Party?</h5>
+  <div class="col-span-6 lg:col-span-3 flex flex-col gap-2">
+    <h3 class="text-primary font-bold col-span-2">¿POR QUÉ CREAMOS CLICK &amp; PARTY?</h3>
+    <div class="grid grid-cols-2 gap-6">
+      <Image
+        src={whyImage}
+        alt="Click & Party"
+        class="h-full max-h-24 lg:max-h-none rounded-lg object-cover"
+        inferSize
+      />
+    
+      <h2>
+        Click &amp; Party es una plataforma que te ayuda a encontrar los
+        <span class="text-secondary">mejores servicios</span> para tu evento.
+      </h2>
 
-    <h2 class="font-bold">
-      Click &amp; Party es una plataforma que te ayuda a encontrar los
-      <span class="text-primary">mejores servicios</span> para tu evento.
-    </h2>
+    </div>
   </div>
 
-  <!-- <div class="grid grid-cols-3 gap-4"> -->
-    {
-      reasonsWhy.map((reason) => (
-        <div key={reason.id} class="flex flex-col items-center gap-2">
-          <reason.icon
-            class:list={[
-              `h-10 w-10 p-2 rounded-full ${colorClasses[reason.color as keyof typeof colorClasses]}`,
-            ]}
+  {
+    reasonsWhy.map((reason) => {
+      const Icon = reason.icon;
+      const iconColorClass =
+        colorClasses[reason.color as keyof typeof colorClasses];
+
+      return (
+        <div class="col-span-2 lg:col-span-1 flex flex-col items-center gap-2 text-center">
+          <Icon
+            class:list={["h-10 w-10 rounded-full p-2", iconColorClass]}
           />
-          <h5 class=" font-bold ">{reason.title}</h5>
-          <p class="text-sm ">{reason.description}</p>
+          <h5 class="font-semibold">{reason.title}</h5>
+          <p>{reason.description}</p>
         </div>
-      ))
-    }
-  <!-- </div> -->
+      );
+    })
+  }
 </section>

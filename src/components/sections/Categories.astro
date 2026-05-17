@@ -1,20 +1,65 @@
 ---
-import { startups,  } from '../../data/Startups';
-import { categories } from '../../data/Categories';
-import CategoryCard from '../CategoryCard.astro';
+import { categories } from "../../data/Categories";
+import CategoryCard from "../CategoryCard.astro";
+import Button from "../inputs/Button.astro";
+import ChevronLeft from "../../assets/icons/ChevronLeft.astro";
+import ChevronRight from "../../assets/icons/ChevronRight.astro";
 ---
 
 <section
   id="categories"
-  class="flex flex-col gap-4 "
+  class="flex flex-col gap-4 rounded-xl bg-white-brand p-3"
   aria-labelledby="categories-heading"
 >
-    <h3 class="font-bold">
-      Explora nuestras categorías
-    </h3>
-    <div class=" grid grid-cols-8 gap-4 items-start">
+  <h3 id="categories-heading">EXPLORA NUESTRAS CATEGORÍAS</h3>
+
+  <div class="relative xl:static" data-categories-carousel>
+    <button
+      type="button"
+      data-carousel-prev
+      class="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full
+      bg-white/50 text-secondary shadow-md transition hover:bg-secondary-light/70 
+      disabled:pointer-events-none disabled:opacity-40 xl:hidden"
+      aria-label="Ver categorías anteriores"
+    >
+      <ChevronLeft />
+    </button>
+
+    <div
+      data-carousel-track
+      class="categories-track flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-12 pb-4 [scrollbar-width:none] xl:flex-wrap xl:justify-center xl:overflow-visible xl:snap-none xl:px-0 [&::-webkit-scrollbar]:hidden"
+      tabindex="0"
+      aria-label="Lista de categorías"
+    >
       {categories.map((category) => (
-        <CategoryCard key={category.id} category={category} />
+        <div class="w-32 shrink-0 snap-start">
+          <CategoryCard category={category} />
+        </div>
       ))}
     </div>
+
+    <button
+      type="button"
+      data-carousel-next
+      class="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full
+    bg-white/50 text-secondary shadow-md transition hover:bg-secondary-light/70 
+      disabled:pointer-events-none disabled:opacity-40 xl:hidden"
+      aria-label="Ver categorías siguientes"
+    >
+      <ChevronRight />
+    </button>
+  </div>
+
+  <div class="flex w-54 justify-center">
+    <Button
+      variant="outlined"
+      color="secondary"
+      href="#categorias"
+      label="Ver todas las categorías"
+    />
+  </div>
 </section>
+
+<script>
+  import "../../scripts/categories-carousel.ts";
+</script>

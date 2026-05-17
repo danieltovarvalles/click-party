@@ -1,14 +1,9 @@
 ---
 export interface Props {
-  /** filled | outlined | ghosted */
   variant?: 'filled' | 'outlined' | 'ghosted';
-  /** primary | secondary | blue | yellow */
   color?: 'primary' | 'secondary' | 'blue' | 'yellow';
-  /** Texto del botón (alternativa al slot) */
   label?: string;
-  /** URL de destino; si existe, renderiza un enlace */
   href?: string;
-  /** Tipo cuando se renderiza como <button> */
   type?: 'button' | 'submit' | 'reset';
   class?: string;
   target?: '_blank' | '_self' | '_parent' | '_top';
@@ -86,7 +81,7 @@ const linkRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
   href ? (
     <a
       href={href}
-      class={classes}
+      class:list={[classes, "text-sm lg:text-base"]}
       target={target}
       rel={linkRel}
       aria-label={ariaLabel}

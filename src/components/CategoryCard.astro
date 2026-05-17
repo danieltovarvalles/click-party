@@ -15,26 +15,26 @@ const { category } = Astro.props;
 const Icon = category.icon;
 
 const colorClasses: Record<CategoryColor, string> = {
-  red: "bg-red-500 hover:bg-red-400",
-  yellow: "bg-yellow-500 hover:bg-yellow-400",
-  blue: "bg-blue-500 hover:bg-blue-400",
-  orange: "bg-orange-500 hover:bg-orange-400",
-  green: "bg-green-500 hover:bg-green-400",
-  purple: "bg-purple-500 hover:bg-purple-400",
-  pink: "bg-pink-500 hover:bg-pink-400",
-  cyan: "bg-cyan-500 hover:bg-cyan-400",
+  primary: "bg-primary hover:bg-primary/70",
+  secondary: "bg-secondary hover:bg-secondary/70",
+  yellow: "bg-yellow-brand hover:bg-yellow-brand/70",
+  blue: "bg-blue-brand hover:bg-blue-brand/70",
+  orange: "bg-orange-brand hover:bg-orange-brand/70",
+  pink: "bg-pink-brand hover:bg-pink-brand/70",
+  purple: "bg-purple-brand hover:bg-purple-brand/70",
+  gray: "bg-gray-500 hover:bg-gray-400",
 };
 ---
 
 <!-- <a href={category.url} class="flex flex-col gap-2 items-center justify-center cursor-pointer"> -->
-<div class="flex flex-col gap-2 items-center justify-center cursor-pointer">
+<div class="flex flex-col gap-2 items-center justify-center cursor-pointer w-32">
   <span
     class:list={[
       "flex flex-col items-center justify-center rounded-full p-3 text-white",
       colorClasses[category.color as CategoryColor],
     ]}
   >
-    <Icon class="h-8 w-8" />
+    <Icon class="h-6 sm:h-8 w-6 sm:w-8" />
   </span>
   <h5 class="text-center  font-semibold">{category.name}</h5>
 </div>

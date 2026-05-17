@@ -3,23 +3,30 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-padding-top: 5rem;
+  }
+
   body {
-    @apply text-black-brand;
+    @apply text-black-brand font-sans text-xs sm:text-sm lg:text-base;
+  }
+  p {
+    @apply text-xs sm:text-sm lg:text-base;
   }
 }
 
 h1 {
-  @apply text-4xl font-bold ;
+  @apply text-2xl sm:text-3xl lg:text-5xl font-extrabold font-serif ;
 }
 h2 {
-  @apply text-2xl font-bold ;
+  @apply text-lg sm:text-xl lg:text-2xl font-bold font-serif;
 }
 h3 {
-  @apply text-lg font-bold ;
+  @apply text-base sm:text-lg lg:text-xl font-bold font-serif;
 }
 h4 {
-  @apply text-base font-bold ;
+  @apply text-xs sm:text-sm font-bold font-serif;
 }
-h5 {
-  @apply text-sm font-bold ;
-}
+/* h5 {
+  @apply text-sm font-bold;
+} */

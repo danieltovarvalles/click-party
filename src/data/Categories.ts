@@ -31,21 +31,21 @@ import Hearth from "../assets/icons/Hearth.astro";
 import Presentation from "../assets/icons/Presentation.astro";
 import HandShake from "../assets/icons/HandShake.astro";
 export type CategoryColor =
-  | "red"
+  | "primary"
+  | "secondary"
+  | "pink"
   | "yellow"
   | "blue"
   | "orange"
-  | "green"
+  | "gray"
   | "purple"
-  | "pink"
-  | "cyan";
 
 export const categories:CategoryCardProps['category'][] = [
   {
     id: 1,
     name: "Decoración y Ambientación",
     icon: Ballon,
-    color: "red",
+    color: "primary",
     url: "/categorias/decoracion-y-ambientacion",
   },
   {
@@ -73,28 +73,28 @@ export const categories:CategoryCardProps['category'][] = [
     id: 5,
     name: "Personalizados y Recuerdos",
     icon: GiftCard,
-    color: "green",
+    color: "purple",
     url: "/categorias/personalizados-y-recuerdos",
   },
   {
     id: 6,
     name: "Animación y Entretenimiento",
     icon: UserScreen,
-    color: "purple",
+    color: "pink",
     url: "/categorias/animacion-y-entretenimiento",
   },
   {
     id: 7,
     name: "Mobiliario y Renta",
     icon: Chair,
-    color: "pink",
+    color: "gray",
     url: "/categorias/mobiliario-y-renta",
   },
   {
     id: 8,
     name: "Organización y Paquetes",
     icon: CheckList,
-    color: "cyan",
+    color: "secondary",
     url: "/categorias/organizacion-y-paquetes",
   },
 ];

@@ -1,0 +1,50 @@
+---
+import Calendar from "../assets/icons/Calendar.astro";
+import Clock from "../assets/icons/Clock.astro";
+import MapPin from "../assets/icons/MapPin.astro";
+
+interface Props {
+  targetDate: string;
+  dateLabel: string;
+  timeLabel: string;
+  locationLabel: string;
+  heading?: string;
+}
+
+const {
+  targetDate,
+  dateLabel,
+  timeLabel,
+  locationLabel,
+  heading = "Faltan para nuestro evento",
+} = Astro.props;
+---
+
+<div
+  class="event-countdown flex h-full w-full flex-col justify-between gap-5 rounded-2xl bg-white px-4 py-6 shadow-sm"
+>
+  <h4 class="text-center uppercase tracking-wide text-primary">
+    {heading}
+  </h4>
+
+  <cp-countdown-timer data-target={targetDate}></cp-countdown-timer>
+
+  <div class="flex flex-col gap-2 border-t border-neutral-100 pt-4 text-sm text-black-brand sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
+    <div class="flex items-center justify-center gap-2">
+      <Calendar class="h-5 w-5 shrink-0 text-primary" />
+      <span>{dateLabel}</span>
+    </div>
+    <div class="flex items-center justify-center gap-2">
+      <Clock class="h-5 w-5 shrink-0 text-primary" />
+      <span>{timeLabel}</span>
+    </div>
+    <div class="flex items-center justify-center gap-2">
+      <MapPin class="h-5 w-5 shrink-0 text-primary" />
+      <span>{locationLabel}</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  import "../scripts/cp-countdown-timer.ts";
+</script>
