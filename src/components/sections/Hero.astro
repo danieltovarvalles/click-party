@@ -5,15 +5,15 @@ import MapPin from "../../assets/icons/MapPin.astro";
 
 <section
   id="hero"
-  class="h-72 flex items-center justify-center"
+  class="h-72 flex items-center justify-between"
   aria-labelledby="hero-heading"
 >
   <div class="flex flex-col justify-center gap-4 py-8 w-1/2">
     <div>
-    <h2 class="text-3xl font-bold text-black">Organiza tu evento</h2>
-    <h2 class="text-3xl font-bold text-primary">sin estrés</h2>
+    <h1>Organiza tu evento</h1>
+    <h1 class="text-primary">sin estrés</h1>
     </div>
-    <p class="text-sm text-black font-medium">
+    <p class="text-sm font-medium">
       Conecta con proveedores locales confiables, compara opciones y encuentra
       todo lo que necesitas para celebrar momentos inolvidables.
     </p>
@@ -33,5 +33,16 @@ import MapPin from "../../assets/icons/MapPin.astro";
       </div>
     </div>
   </div>
-  <div class="rounded-lg bg-primary-light p-8 w-1/2 h-full"></div>
+  <img 
+    src="/src/assets/images/celebrating-group-friends.jpg" 
+    alt="Hero" 
+    class="rounded-lg h-full"
+    style="
+      mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,1) 50%,
+        rgba(0,0,0,0) 100%
+      );
+    "
+  />
 </section>

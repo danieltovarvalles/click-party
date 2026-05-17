@@ -1,13 +1,45 @@
+---
+import { reasonsWhy } from "../../data/ReasonsWhy";
+
+const colorClasses = {
+  green: "text-green-600 bg-green-100/50",
+  red: "text-red-600 bg-red-100/50",
+  yellow: "text-yellow-600 bg-yellow-100/50",
+};
+---
+
 <section
   id="why-click-party"
-  class="min-h-[30vh]"
+  class="grid grid-cols-6 gap-6 bg-primary-light/20 p-8 rounded-2xl"
   aria-labelledby="why-click-party-heading"
 >
-  <div class="py-8">
-    <h2 id="why-click-party-heading" class="text-2xl font-bold text-neutral-900">
-      Why Click &amp; Party
+  <img
+    src="/src/assets/images/girls-boy-with-balloons.jpg"
+    alt="Click & Party"
+    class="h-full rounded-lg object-cover "
+  />
+  <div class="flex flex-col gap-2 col-span-2">
+    <h5 class="text-primary font-bold">¿Por qué creamos Click &amp; Party?</h5>
+
+    <h2 class="font-bold">
+      Click &amp; Party es una plataforma que te ayuda a encontrar los
+      <span class="text-primary">mejores servicios</span> para tu evento.
     </h2>
-    <!-- Contenido pendiente -->
-    <div class="mt-4 min-h-8" aria-hidden="true"></div>
   </div>
+
+  <!-- <div class="grid grid-cols-3 gap-4"> -->
+    {
+      reasonsWhy.map((reason) => (
+        <div key={reason.id} class="flex flex-col items-center gap-2">
+          <reason.icon
+            class:list={[
+              `h-10 w-10 p-2 rounded-full ${colorClasses[reason.color as keyof typeof colorClasses]}`,
+            ]}
+          />
+          <h5 class=" font-bold ">{reason.title}</h5>
+          <p class="text-sm ">{reason.description}</p>
+        </div>
+      ))
+    }
+  <!-- </div> -->
 </section>

@@ -9,10 +9,10 @@ import CategoryCard from '../CategoryCard.astro';
   class="flex flex-col gap-4 "
   aria-labelledby="categories-heading"
 >
-    <h3 class="text-lg font-bold text-neutral-900">
+    <h3 class="font-bold">
       Explora nuestras categorías
     </h3>
-    <div class=" grid grid-cols-8 gap-4 ">
+    <div class=" grid grid-cols-8 gap-4 items-start">
       {categories.map((category) => (
         <CategoryCard key={category.id} category={category} />
       ))}

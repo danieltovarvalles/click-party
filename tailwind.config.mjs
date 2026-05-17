@@ -11,9 +11,9 @@ export default {
       colors: {
         'primary': "#E6546B",
         'secondary': "#0DA8A8",
-        'black': "#323232",
+        'black-brand': "#323232",
 
-        'white': "#F4F4F5",
+        'white-brand': "#F4F4F5",
         // 'blue': "#086EC2",
         // 'yellow': "#ECBE5C",
         'primary-light': "#F3AAB5",

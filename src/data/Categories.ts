@@ -26,6 +26,10 @@ import ToolsKitchen2 from "../assets/icons/ToolsKitchen2.astro";
 import GiftCard from "../assets/icons/GiftCard.astro";
 import type { CategoryCardProps } from "../components/CategoryCard.astro";
 import CheckList from "../assets/icons/CheckList.astro";
+import UserSearch from "../assets/icons/UserSearch.astro";
+import Hearth from "../assets/icons/Hearth.astro";
+import Presentation from "../assets/icons/Presentation.astro";
+import HandShake from "../assets/icons/HandShake.astro";
 export type CategoryColor =
   | "red"
   | "yellow"
@@ -96,6 +100,10 @@ export const categories:CategoryCardProps['category'][] = [
 ];
 
 export const iconTest = [
+  UserSearch,
+  Hearth,
+  Presentation,
+  HandShake,
   BabyCar,
   Ballon,
   Cake,
