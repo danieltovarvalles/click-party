@@ -5,6 +5,7 @@
 @layer base {
   html {
     scroll-padding-top: 5rem;
+    cursor: default;
   }
 
   body {

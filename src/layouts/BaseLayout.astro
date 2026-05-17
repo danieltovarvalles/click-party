@@ -1,9 +1,8 @@
 ---
 import '../styles/global.css';
-import { Image } from 'astro:assets';
-import logo from '../assets/images/Click_&_Party_Logo.png';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
 
-const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -18,23 +17,11 @@ const year = new Date().getFullYear();
     <title>Click & Party</title>
   </head>
   <body class="bg-white antialiased">
-    <header
-      class="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80 [contain:layout_style_paint]"
-    >
-      <div class="flex items-center justify-between px-4 sm:px-8 py-2">
-        <a href="/" class="text-lg font-semibold tracking-tight text-neutral-900">
-          <Image src={logo} alt="Click & Party" class="h-12 sm:h-16 w-auto" inferSize />
-        </a>
-      </div>
-    </header>
+  <Header />
     <main class="mx-auto max-w-7xl flex flex-col gap-6 overflow-hidden px-4 sm:px-8">
       <h1 class="sr-only">Click &amp; Party</h1>
       <slot />
     </main>
-    <footer class="border-t border-neutral-200 bg-neutral-50">
-      <div class="mx-auto max-w-7xl px-4 py-6 text-sm text-neutral-600">
-        &copy; {year} Click &amp; Party
-      </div>
-    </footer>
+   <Footer />
   </body>
 </html>

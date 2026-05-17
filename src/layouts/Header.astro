@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/images/Click_&_Party_Logo.png";
+import Logo2 from "../assets/icons/Click&Party.astro";
+import { mainNav } from "../data/navigation";
+---
+
+<header
+  data-scroll-spy
+  class="sticky top-0 z-50 border-b border-neutral-200 bg-white/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-white/80 [contain:layout_style_paint] overflow-hidden"
+>
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-8"
+  >
+    <a href="/#hero" class="shrink-0 text-lg font-semibold tracking-tight text-neutral-900">
+      <!-- <Image src={Logo2} alt="Click & Party" class="h-8 w-auto sm:h-16" inferSize /> -->
+       <Logo2 class="h-8 w-auto sm:h-16" />
+    </a>
+
+    <nav aria-label="Principal">
+      <ul class="flex items-center gap-2 font-semibold md:gap-8">
+        {
+          mainNav.map(({ label, href }) => (
+            <li>
+              <a
+                href={href}
+                data-nav-link
+                class="text-black-brand transition-colors hover:text-primary"
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import "../scripts/scroll-spy.ts";
+</script>
