@@ -28,8 +28,29 @@
   section[id] {
     scroll-margin-top: 6rem;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+    section[id].scroll-target-pulse {
+      animation: scroll-target-pulse 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  }
   p {
     @apply text-xs sm:text-sm lg:text-base;
+  }
+}
+
+@keyframes scroll-target-pulse {
+  0% {
+    transform: translateY(10px);
+    filter: brightness(1);
+  }
+  40% {
+    transform: translateY(0);
+    filter: brightness(1.02);
+  }
+  100% {
+    transform: translateY(0);
+    filter: brightness(1);
   }
 }
 

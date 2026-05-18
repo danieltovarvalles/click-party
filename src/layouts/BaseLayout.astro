@@ -21,17 +21,26 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <script is:inline>
+      history.scrollRestoration = "manual";
+    </script>
   </head>
-  <body class=" antialiased"
-  >
-    <div id="page-scroll" class="bg-white-brand/60">
+  <body class="antialiased">
+    <BG
+      class="pointer-events-none fixed inset-0 -z-10 h-full w-full"
+      aria-hidden="true"
+    />
+    <div id="page-scroll" class="relative bg-white-brand/60">
       <Header />
-      <main class="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-8">
-        <!-- <h1 class="sr-only">Click &amp; Party</h1> -->
+      <main class="relative mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 pb-4 sm:px-8">
         <slot />
       </main>
-      <BG class="pointer-events-none absolute -z-10 top-0 left-0 h-full w-full" />
       <Footer />
     </div>
+
+    <script>
+      import { initPageScroll } from "../scripts/page-scroll.ts";
+      initPageScroll();
+    </script>
   </body>
 </html>

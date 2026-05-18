@@ -36,9 +36,9 @@ export const footerNav: FooterNavItem[] = [
   { title: "Categorias", items: categoryFooterItems },
   { title: "Servicios", items: startupFooterItems },
   { title: "Información", items: [
-    { label: "Nosotros", href: "informacion#nosotros" },
-    // { label: "Contacto", href: "informacion#contacto" },
-    { label: "Preguntas frecuentes", href: "informacion#preguntasFrecuentes" },
+    { label: "Nosotros", href: "/informacion#nosotros" },
+    // { label: "Contacto", href: "/informacion#contacto" },
+    { label: "Preguntas Frecuentes", href: "/informacion#preguntasFrecuentes" },
     // { label: "Política de Privacidad", href: "informacion#politicaDePrivacidad" },
     // { label: "Términos y Condiciones", href: "informacion#terminosYCondiciones" },
   ]},

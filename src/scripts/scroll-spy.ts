@@ -2,7 +2,7 @@ import {
   getScrollRoot,
   getScrollTop,
   getSectionIdFromHref,
-  HEADER_OFFSET,
+  getHeaderOffset,
 } from "./scroll-utils";
 
 function initScrollSpy(header: HTMLElement) {
@@ -47,6 +47,8 @@ function initScrollSpy(header: HTMLElement) {
   };
 
   const updateActiveSection = () => {
+    const headerOffset = getHeaderOffset();
+
     if (isNearPageBottom()) {
       setActive(sectionIds[sectionIds.length - 1]);
       return;
@@ -64,12 +66,12 @@ function initScrollSpy(header: HTMLElement) {
       const nextTop =
         nextSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
 
-      if (top <= HEADER_OFFSET && nextTop > HEADER_OFFSET) {
+      if (top <= headerOffset && nextTop > headerOffset) {
         currentId = id;
         break;
       }
 
-      if (top <= HEADER_OFFSET) {
+      if (top <= headerOffset) {
         currentId = id;
       }
     }

@@ -61,20 +61,7 @@ import { mainNav } from "../data/Navigation";
 
 <script>
   import "../scripts/scroll-spy.ts";
-  import {
-    initHeader,
-    initPageAnchorNavigation,
-    scrollToHashOnLoad,
-  } from "../scripts/header-nav.ts";
+  import { initHeaderMenu } from "../scripts/header-menu.ts";
 
-  initPageAnchorNavigation();
-  document.querySelectorAll<HTMLElement>("[data-scroll-spy]").forEach(initHeader);
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", scrollToHashOnLoad, {
-      once: true,
-    });
-  } else {
-    scrollToHashOnLoad();
-  }
+  document.querySelectorAll<HTMLElement>("[data-scroll-spy]").forEach(initHeaderMenu);
 </script>
