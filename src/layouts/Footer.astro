@@ -1,8 +1,18 @@
 ---
 import Logo2 from "../assets/icons/Click&Party_Horizontal_Mono.astro";
-import { footerNav } from "../data/navigation";
+import { footerNav, type FooterNavItem } from "../data/Navigation";
 
 const year = new Date().getFullYear();
+
+/** A partir de esta cantidad, la lista se divide en dos columnas */
+const TWO_COLUMN_MIN_ITEMS = 5;
+
+function splitFooterItems(items: FooterNavItem["items"]) {
+  if (items.length < TWO_COLUMN_MIN_ITEMS) return [items];
+
+  const mid = Math.ceil(items.length / 2);
+  return [items.slice(0, mid), items.slice(mid)];
+}
 ---
 
 <footer class="overflow-hidden bg-secondary py-6">
@@ -10,8 +20,8 @@ const year = new Date().getFullYear();
     aria-label="Pie de página"
     class="mx-auto flex max-w-7xl flex-col gap-8 px-4 text-white sm:px-8 md:flex-row md:items-start md:justify-between"
   >
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-16">
-      <div class="flex w-full max-w-[18rem] flex-col gap-2">
+    <div class="flex lg:justify-between w-full flex-wrap gap-6">
+      <div class="flex w-full max-w-[10rem] md:max-w-[16rem] lg:max-w-[18rem] flex-col gap-2">
         <a href="/#hero" class="shrink-0">
           <Logo2 class="h-auto text-white" />
         </a>
@@ -22,27 +32,45 @@ const year = new Date().getFullYear();
         </p>
       </div>
       {
-        footerNav.map((category) => (
-          <div>
-            <h5 class="mb-2 text-xs font-bold uppercase tracking-wide text-white">
-              {category.title}
-            </h5>
-            <ul class="flex flex-col text-sm">
-              {category.items.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    target={item.openOnNewTab ? "_blank" : undefined}
-                    rel={item.openOnNewTab ? "noopener noreferrer" : undefined}
-                    class="text-[10px] sm:text-xs font-semibold leading-none text-white/90 transition-colors hover:text-white"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
+        footerNav.map((category) => {
+          const itemColumns = splitFooterItems(category.items);
+
+          return (
+            <div class="pt-6">
+              <h5 class="mb-2 text-xs font-bold uppercase tracking-wide text-white min-w-[160px]">
+                {category.title}
+              </h5>
+              <div
+                class:list={[
+                  itemColumns.length > 1 && "md:grid md:grid-cols-2 md:gap-x-4 lg:gap-x-6",
+                ]}
+              >
+                {
+                  itemColumns.map((columnItems) => (
+                    <ul class="flex flex-col gap-1 text-sm">
+                      {
+                        columnItems.map((item) => (
+                          <li>
+                            <a
+                              href={item.href}
+                              target={item.openOnNewTab ? "_blank" : undefined}
+                              rel={
+                                item.openOnNewTab ? "noopener noreferrer" : undefined
+                              }
+                              class="text-[10px] sm:text-xs font-semibold leading-snug text-white/90 transition-colors hover:text-white"
+                            >
+                              {item.label}
+                            </a>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  ))
+                }
+              </div>
+            </div>
+          );
+        })
       }
     </div>
   </nav>

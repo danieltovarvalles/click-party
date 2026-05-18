@@ -1,0 +1,16 @@
+---
+import { faqItems } from "../../data/Info";
+---
+
+<section
+      id="preguntasFrecuentes"
+      class="flex flex-col rounded-2xl [contain:layout_style_paint] bg-white/50 p-6"
+    >
+      <h3 class="text-primary font-bold col-span-2">PREGUNTAS FRECUENTES</h3>
+      {faqItems.map((item) => (
+        <div class="flex flex-col gap-4 lg:gap-6">
+          <h3 class="text-secondary">{item.question}</h3>
+          <p>{item.answer}</p>
+        </div>
+      ))}
+    </section>

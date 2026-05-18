@@ -4,12 +4,29 @@
 
 @layer base {
   html {
-    scroll-padding-top: 5rem;
     cursor: default;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
   }
 
   body {
     @apply text-black-brand font-sans text-xs sm:text-sm lg:text-base;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #page-scroll {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: none;
+    scroll-padding-top: 6rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
   }
   p {
     @apply text-xs sm:text-sm lg:text-base;

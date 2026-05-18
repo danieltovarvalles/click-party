@@ -1,0 +1,49 @@
+---
+import ClickAndParty from "../../assets/icons/Click&Party.astro";
+import { Image } from "astro:assets";
+import nosotrosImage from "../../assets/images/nosotros.jpg";
+import ClickAndPartyHorizontal from "../../assets/icons/Click&Party_horizontal.astro";
+---
+
+<section
+      id="nosotros"
+      class="flex flex-col rounded-2xl [contain:layout_style_paint] bg-white/50 p-6"
+    >
+      <h3 class="text-primary font-bold col-span-2">NOSOTROS</h3>
+      <div class="flex flex-col lg:flex-row gap-6">
+        <div class="flex flex-col gap-2 w-full lg:w-[40%]">
+          <h2>
+            Sabemos que organizar un evento puede ser
+            <span class="text-secondary">emocionante</span>, pero también <span class="text-primary">agotador</span>.
+          </h2>
+          <p>
+            Encontrar proveedores confiables, comparar opciones, coordinar
+            tiempos y cuidar cada detalle requiere mucho tiempo, experiencia y
+            organización.
+          </p>
+          <p>Muchas veces simplemente no
+          sabemos por dónde empezar o qué servicios realmente necesitamos para
+          lograr el evento que imaginamos.</p>
+        </div>
+        <Image
+          src={nosotrosImage}
+          alt="Click & Party"
+          class="rounded-lg object-cover max-h-72 w-full lg:w-[30%]"
+          inferSize
+        />
+        <div class="w-full lg:w-[30%]">
+          <h3 class="">
+            Por eso nació:  <ClickAndPartyHorizontal class="inline-block h-8 md:h-10 mb-2"/> 
+          </h3>
+          <p>Una plataforma creada para conectar a las personas con los
+            mejores servicios y emprendedores para sus eventos, todo en un solo
+            lugar.</p>
+          <p>
+            Aquí ponemos a tu disposición desde los servicios más esenciales
+            hasta esos pequeños detalles que muchas veces no sabías que
+            necesitabas, pero que hacen la diferencia para crear momentos
+            inolvidables.
+          </p>
+        </div>
+      </div>
+    </section>

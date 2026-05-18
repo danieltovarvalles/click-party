@@ -8,7 +8,7 @@ import ChevronRight from "../../assets/icons/ChevronRight.astro";
 
 <section
   id="categories"
-  class="flex flex-col gap-4 rounded-xl bg-white-brand p-3"
+  class="flex flex-col gap-4 rounded-xl bg-white/50 p-6"
   aria-labelledby="categories-heading"
 >
   <h3 id="categories-heading">EXPLORA NUESTRAS CATEGORÍAS</h3>
@@ -32,7 +32,7 @@ import ChevronRight from "../../assets/icons/ChevronRight.astro";
       aria-label="Lista de categorías"
     >
       {categories.map((category) => (
-        <div class="w-32 shrink-0 snap-start">
+        <div class="w-28 shrink-0 snap-start">
           <CategoryCard category={category} />
         </div>
       ))}
@@ -51,12 +51,12 @@ import ChevronRight from "../../assets/icons/ChevronRight.astro";
   </div>
 
   <div class="flex w-54 justify-center">
-    <Button
+    <!-- <Button
       variant="outlined"
       color="secondary"
       href="#categorias"
       label="Ver todas las categorías"
-    />
+    /> -->
   </div>
 </section>
 

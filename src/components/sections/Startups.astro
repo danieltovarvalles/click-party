@@ -7,29 +7,31 @@ const LOOP_COUNT = 3;
 
 <section
   id="startups"
-  class="flex flex-col gap-4 rounded-xl bg-secondary-light p-3"
+  class="flex flex-col gap-4 rounded-xl bg-secondary/20 py-6"
   aria-labelledby="startups-heading"
 >
-  <h3 id="startups-heading" class="text-secondary">EXPLORA NUESTROS SERVICIOS</h3>
+  <h3 id="startups-heading" class="text-secondary px-6">EXPLORA NUESTROS SERVICIOS</h3>
 
   <div
-    class="relative -mx-1"
+    class="relative"
     data-startups-carousel
     aria-roledescription="carrusel"
     aria-label="Showcase de startups"
   >
-    <div
-      class="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-secondary-light to-transparent"
+    <!-- <div
+      class="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-50% from-[#D1EEED] to-transparent"
       aria-hidden="true"
     />
     <div
-      class="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-secondary-light to-transparent"
+      class="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-50% from-[#D1EEED] to-transparent"
       aria-hidden="true"
-    />
+    /> -->
+
 
     <div
       data-startups-track
-      class="startups-track flex touch-pan-x gap-4 overflow-x-auto scroll-smooth px-4 pb-2 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+      class="startups-track flex touch-pan-x gap-4 overflow-x-auto scroll-smooth px-4 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] 
+      [&::-webkit-scrollbar]:hidden"
     >
       {
         Array.from({ length: LOOP_COUNT }, (_, loopIndex) =>

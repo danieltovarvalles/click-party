@@ -1,10 +1,9 @@
-const HEADER_OFFSET = 96;
-
-function getSectionIdFromHref(href: string) {
-  const hashIndex = href.indexOf("#");
-  if (hashIndex === -1) return null;
-  return href.slice(hashIndex + 1);
-}
+import {
+  getScrollRoot,
+  getScrollTop,
+  getSectionIdFromHref,
+  HEADER_OFFSET,
+} from "./scroll-utils";
 
 function initScrollSpy(header: HTMLElement) {
   const isHome =
@@ -25,7 +24,9 @@ function initScrollSpy(header: HTMLElement) {
 
   const setActive = (id: string) => {
     links.forEach((link) => {
-      const linkSectionId = getSectionIdFromHref(link.getAttribute("href") ?? "");
+      const linkSectionId = getSectionIdFromHref(
+        link.getAttribute("href") ?? "",
+      );
       const isActive = linkSectionId === id;
 
       link.classList.toggle("text-primary", isActive);
@@ -37,9 +38,11 @@ function initScrollSpy(header: HTMLElement) {
     });
   };
 
+  const scrollRoot = getScrollRoot();
+
   const isNearPageBottom = () => {
-    const scrollBottom = window.scrollY + window.innerHeight;
-    const docHeight = document.documentElement.scrollHeight;
+    const scrollBottom = getScrollTop(scrollRoot) + window.innerHeight;
+    const docHeight = scrollRoot.scrollHeight;
     return docHeight - scrollBottom <= 120;
   };
 
@@ -58,9 +61,9 @@ function initScrollSpy(header: HTMLElement) {
 
       const { top } = section.getBoundingClientRect();
       const nextSection = document.getElementById(sectionIds[i + 1] ?? "");
-      const nextTop = nextSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+      const nextTop =
+        nextSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
 
-      // Activa la sección cuyo inicio ya pasó el header y la siguiente aún no
       if (top <= HEADER_OFFSET && nextTop > HEADER_OFFSET) {
         currentId = id;
         break;
@@ -84,7 +87,10 @@ function initScrollSpy(header: HTMLElement) {
     });
   };
 
-  window.addEventListener("scroll", onScroll, { passive: true });
+  const scrollTarget =
+    scrollRoot === document.documentElement ? window : scrollRoot;
+
+  scrollTarget.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", updateActiveSection, { passive: true });
 
   if (window.location.hash) {

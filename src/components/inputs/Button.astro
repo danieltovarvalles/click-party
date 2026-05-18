@@ -63,22 +63,30 @@ const variantClasses: Record<Color, Record<Variant, string>> = {
   },
 };
 
+const isDisabled = disabled === true;
+
 const baseClasses =
-  'inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50';
+  'inline-flex items-center justify-center rounded-full px-6 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+
+const disabledClasses = isDisabled
+  ? 'pointer-events-none cursor-not-allowed opacity-50'
+  : '';
 
 const classes = [
   baseClasses,
   variantClasses[color][variant],
+  disabledClasses,
   className,
 ]
   .filter(Boolean)
   .join(' ');
 
 const linkRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
+const renderAsLink = Boolean(href) && !isDisabled;
 ---
 
 {
-  href ? (
+  renderAsLink ? (
     <a
       href={href}
       class:list={[classes, "text-sm lg:text-base"]}
@@ -91,8 +99,9 @@ const linkRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
   ) : (
     <button
       type={type}
-      class={classes}
-      disabled={disabled}
+      class:list={[classes, "text-sm lg:text-base"]}
+      disabled={isDisabled}
+      aria-disabled={isDisabled ? true : undefined}
       aria-label={ariaLabel}
     >
       <slot>{label}</slot>

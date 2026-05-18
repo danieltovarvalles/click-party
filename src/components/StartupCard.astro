@@ -20,34 +20,24 @@ export interface StartupCardProps {
 
 const { startup } = Astro.props;
 
-// const colorClasses: Record<CategoryColor, string> = {
-//   primary: "bg-primary hover:bg-primary/70",
-//   secondary: "bg-secondary hover:bg-secondary/70",
-//   yellow: "bg-yellow-brand hover:bg-yellow-brand/70",
-//   blue: "bg-blue-brand hover:bg-blue-brand/70",
-//   orange: "bg-orange-brand hover:bg-orange-brand/70",
-//   pink: "bg-pink-brand hover:bg-pink-brand/70",
-//   purple: "bg-purple-brand hover:bg-purple-brand/70",
-//   gray: "bg-gray-500 hover:bg-gray-400",
-// };
 const message = encodeURIComponent(
   `Hola, vi tu perfil en Click & Party y me gustaría más información sobre tus servicios`,
 );
 ---
 
-<div class="group w-52 min-w-52 rounded-2xl overflow-hidden bg-white shadow-md">
+<div class="group w-40 md:w-52 rounded-2xl overflow-hidden bg-white shadow-md">
   <a href={startup.mainPageUrl} target="_blank">
   <div class="relative">
     <Image
       src={startup.image}
       alt={startup.name}
-      class="w-full h-52 object-cover"
+      class="w-full h-36 md:h-44 object-cover"
       inferSize
     />
 
     <div class="absolute left-1/2 bottom-0 translate-y-1/2 -translate-x-1/2">
       <div
-        class="w-16 h-16 rounded-full bg-white p-2 shadow-md flex items-center justify-center"
+        class="w-12 md:w-16 h-12 md:h-16 rounded-full bg-white p-1 md:p-2 shadow-md flex items-center justify-center"
       >
         <Image
           src={startup.logo}
@@ -58,14 +48,12 @@ const message = encodeURIComponent(
     </div>
   </div>
 
-  <div class="mt-4 p-4 text-center flex flex-col gap-2">
+  <div class="mt-4 p-3 md:p-4 text-center flex flex-col gap-2">
     <h5 class="text-base font-bold">
       {startup.name}
     </h5>
 
-    <p class="text-sm text-zinc-500">
-      {startup.description}
-    </p>
+    <p>{startup.description}</p>
 
     {
       startup?.phone && (

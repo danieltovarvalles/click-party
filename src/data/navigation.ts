@@ -33,14 +33,13 @@ export const mainNav: NavItem[] = [
 ];
 
 export const footerNav: FooterNavItem[] = [
-  { title: "Servicios", items: startupFooterItems },
   { title: "Categorias", items: categoryFooterItems },
+  { title: "Servicios", items: startupFooterItems },
   { title: "Información", items: [
-    { label: "Nosotros", href: "/nosotros" },
-    { label: "Contacto", href: "/contacto" },
-    { label: "Consejos para tu evento", href: "/blog" },
-    { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },
-    { label: "Política de Privacidad", href: "/politica-de-privacidad" },
-    { label: "Términos y Condiciones", href: "/terminos-y-condiciones" },
+    { label: "Nosotros", href: "informacion#nosotros" },
+    // { label: "Contacto", href: "informacion#contacto" },
+    { label: "Preguntas frecuentes", href: "informacion#preguntasFrecuentes" },
+    // { label: "Política de Privacidad", href: "informacion#politicaDePrivacidad" },
+    // { label: "Términos y Condiciones", href: "informacion#terminosYCondiciones" },
   ]},
 ];

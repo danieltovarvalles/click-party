@@ -3,12 +3,6 @@ import { Image } from "astro:assets";
 import { reasonsWhy } from "../../data/ReasonsWhy";
 import whyImage from "../../assets/images/why.jpg";
 
-// const colorClasses = {
-//   green: "text-blue-brand bg-blue-brand/10",
-//   red: "text-pink-brand bg-pink-brand/10",
-//   yellow: "text-yellow-brand bg-yellow-brand/10",
-// };
-
 const colorClasses = {
   green: "text-white bg-secondary",
   red: "text-white bg-primary",
@@ -18,7 +12,7 @@ const colorClasses = {
 
 <section
   id="why-click-party"
-  class="grid grid-cols-6 gap-4 lg:gap-6 rounded-2xl [contain:layout_style_paint]"
+  class="grid grid-cols-6 gap-4 lg:gap-6 rounded-2xl [contain:layout_style_paint] bg-white/50 p-6"
   aria-labelledby="why-click-party-heading"
 >
   <div class="col-span-6 lg:col-span-3 flex flex-col gap-2">
