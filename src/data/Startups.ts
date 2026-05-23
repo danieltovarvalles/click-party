@@ -1,24 +1,32 @@
 import type { ImageMetadata } from "astro";
-import logo9293Craft from "../assets/images/startups/9293Craft_Logo.png";
-import image9293Craft from "../assets/images/startups/9293Craft_Photo.png";
-import logoTattooParty from "../assets/images/Click_&_Party_Isotipo.png";
-import imageTattooParty from "../assets/images/jungle.jpg";
-import imageIceSweet from "../assets/images/startups/IcySweet_Photo.png";
-import logoIceSweet from "../assets/images/startups/IcySweet_Logo.png"
-import imageFiestaPlus from "../assets/images/startups/FiestaPlus_Photo.jpg";
-import logoFiestaPlus from "../assets/images/startups/FiestaPlus_Logo.jpeg"
+import logo9293Craft from "../assets/startups/9293Craft.svg";
+import cover9293Craft from "../assets/startups/9293Craft_Photo.png";
+import logoBaned from "../assets/startups/Baned_Logo.svg";
+import coverBaned from "../assets/startups/Baned_Cover.png";
+import logoFiestaPlus from "../assets/startups/FiestaPlus_Logo.jpeg";
+import coverFiestaPlus from "../assets/startups/FiestaPlus_Photo.jpg";
+import logoAltagracia from "../assets/startups/Altagracia_Logo.jpg";
+import coverAltagracia from "../assets/startups/Altagracia_Cover.jpeg";
+
+export type ImageOrIcon = ImageMetadata | typeof logo9293Craft;
+
+export type LogoPresentation = {
+  containerClass?: string;
+  imageClass?: string;
+};
 
 export type Startup = {
   id: number;
   name: string;
   slug: string;
   description: string;
-  image: ImageMetadata;
-  logo: ImageMetadata;
+  image: ImageOrIcon;
+  logo?: ImageOrIcon;
+  logoPresentation?: LogoPresentation;
   phone?: string;
   facebook?: string;
   whatsappUrl?: string;
-  mainPageUrl: string;
+  mainPageUrl?: string;
   categoryIds: number[];
 };
 
@@ -26,45 +34,56 @@ export const startups: Startup[] = [
   {
     id: 1,
     name: "9293 Craft",
-    slug: "9293-craft",
+    slug: "9293craft",
     description: "Corte y grabado laser, recuerdos, decoración.",
-    image: image9293Craft,
+    image: cover9293Craft,
     logo: logo9293Craft,
-    phone:"528711068211",
+    logoPresentation: {
+      imageClass: "p-1",
+    },
+    phone: "528711068211",
     mainPageUrl: "https://www.instagram.com/9293craft/",
-    categoryIds:[1, 2, 3, 4, 5, 6, 7, 8],
+    categoryIds: [1, 2, 3, 4, 5, 6, 7, 8],
   },
   {
     id: 2,
-    name: "Ice & Sweet",
-    slug: "ice-sweet",
-    description: "Hielitos y cupcakes gourmet.",
-    image: imageIceSweet,
-    logo: logoIceSweet,
+    name: "BANED",
+    slug: "banned",
+    description: "Hielitos,cupcakes y postres gourmet.",
+    image: coverBaned,
+    logo: logoBaned,
+    logoPresentation: {
+      imageClass: "p-1",
+    },
     phone: "528714150303",
-    mainPageUrl: "https://www.google.com",
-    categoryIds:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    categoryIds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   },
   {
     id: 3,
     name: "Fiesta Plus",
     slug: "fiesta-plus",
     description: "Renta de sillas, mesas y brincolin.",
-    image: imageFiestaPlus,
+    image: coverFiestaPlus,
     logo: logoFiestaPlus,
+    logoPresentation: {
+      imageClass: "scale-[1.7] pt-1",
+    },
     facebook: "100065216013301",
-    mainPageUrl: "www.facebook.com/share/1GkLakqAx2/?mibextid=wwXIfr",
-    categoryIds:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    mainPageUrl: "https://www.facebook.com/share/1GkLakqAx2/?mibextid=wwXIfr",
+    categoryIds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   },
   {
-    id: 9,
-    name: "Tattoo Party",
-    slug: "tattoo-party",
-    description: "Tattoos, piercings, maquillaje, peluquería, spa, etc.",
-    image: imageTattooParty,
-    logo: logoTattooParty,
-    whatsappUrl: "https://wa.me/526561234567",
-    mainPageUrl: "https://www.google.com",
-    categoryIds:[1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    id: 4,
+    name: "Altagracia Eventos",
+    slug: "altagracia",
+    description: "Renta de sillas, mesas y brincolin.",
+    image: coverAltagracia,
+    logo: logoAltagracia,
+    logoPresentation: {
+      imageClass: "scale-110",
+    },
+    phone: "528721373025",
+    mainPageUrl: "https://www.facebook.com/profile.php?id=61554953079082",
+    categoryIds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   },
 ];

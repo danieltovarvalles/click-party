@@ -1,5 +1,5 @@
 const AUTO_SPEED = 0.45;
-const RESUME_DELAY_MS = 500;
+const RESUME_DELAY_MS = 0;
 
 function initStartupsCarousel(root: HTMLElement) {
   const track = root.querySelector<HTMLElement>("[data-startups-track]");
@@ -11,25 +11,45 @@ function initStartupsCarousel(root: HTMLElement) {
 
   let setWidth = 0;
   let isPaused = prefersReducedMotion;
-  let hoverCount = 0;
+  let isPositioned = false;
+  let isAutoScrolling = false;
   let resumeTimeout = 0;
   let rafId = 0;
 
-  const measure = () => {
-    const total = track.scrollWidth;
-    if (total <= 0) return;
-    setWidth = total / 3;
-    if (track.scrollLeft < setWidth * 0.25 || track.scrollLeft > setWidth * 1.75) {
-      track.scrollLeft = setWidth;
-    }
+  const scrollToInstant = (left: number) => {
+    track.style.scrollBehavior = "auto";
+    track.scrollLeft = left;
   };
 
   const normalizeScroll = () => {
     if (setWidth <= 0) return;
     if (track.scrollLeft >= setWidth * 2 - 2) {
-      track.scrollLeft -= setWidth;
+      scrollToInstant(track.scrollLeft - setWidth);
     } else if (track.scrollLeft <= 2) {
-      track.scrollLeft += setWidth;
+      scrollToInstant(track.scrollLeft + setWidth);
+    }
+  };
+
+  const ensureInitialPosition = () => {
+    if (setWidth <= 0 || isPositioned) return;
+    scrollToInstant(setWidth);
+    isPositioned = true;
+  };
+
+  const measure = () => {
+    const total = track.scrollWidth;
+    if (total <= 0) return;
+
+    const beforeLeft = track.scrollLeft;
+    const prevSetWidth = setWidth;
+    setWidth = total / 3;
+
+    if (!isPositioned) {
+      ensureInitialPosition();
+    } else if (prevSetWidth > 0 && Math.abs(prevSetWidth - setWidth) > 1) {
+      const ratio = beforeLeft / prevSetWidth;
+      scrollToInstant(ratio * setWidth);
+      normalizeScroll();
     }
   };
 
@@ -38,43 +58,29 @@ function initStartupsCarousel(root: HTMLElement) {
     window.clearTimeout(resumeTimeout);
   };
 
-  const canAutoScroll = () => !prefersReducedMotion && hoverCount === 0;
-
   const scheduleResume = () => {
     window.clearTimeout(resumeTimeout);
     resumeTimeout = window.setTimeout(() => {
-      isPaused = !canAutoScroll();
+      isPaused = prefersReducedMotion;
     }, RESUME_DELAY_MS);
   };
 
   const bindHoverPause = () => {
-    track.querySelectorAll("[data-startup-slide]").forEach((slide) => {
-      slide.addEventListener("mouseenter", () => {
-        hoverCount += 1;
-        pause();
-      });
-      slide.addEventListener("mouseleave", () => {
-        hoverCount = Math.max(0, hoverCount - 1);
-        if (hoverCount === 0) {
-          scheduleResume();
-        }
-      });
-    });
+    track.addEventListener("mouseenter", pause);
+    track.addEventListener("mouseleave", scheduleResume);
   };
 
   const tick = () => {
-    if (!isPaused && setWidth > 0) {
+    if (!isPaused && setWidth > 0 && isPositioned) {
+      isAutoScrolling = true;
       track.scrollLeft += AUTO_SPEED;
       normalizeScroll();
+      isAutoScrolling = false;
     }
     rafId = window.requestAnimationFrame(tick);
   };
 
-  track.addEventListener(
-    "touchstart",
-    () => pause(),
-    { passive: true },
-  );
+  track.addEventListener("touchstart", pause, { passive: true });
 
   track.addEventListener(
     "touchend",
@@ -97,7 +103,9 @@ function initStartupsCarousel(root: HTMLElement) {
   track.addEventListener(
     "scroll",
     () => {
-      normalizeScroll();
+      if (!isAutoScrolling) {
+        normalizeScroll();
+      }
     },
     { passive: true },
   );
