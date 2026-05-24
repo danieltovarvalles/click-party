@@ -55,13 +55,13 @@
 }
 
 h1 {
-  @apply text-2xl sm:text-3xl lg:text-5xl font-extrabold font-serif ;
+  @apply text-2xl sm:text-3xl lg:text-5xl font-extrabold font-serif leading-8;
 }
 h2 {
-  @apply text-lg sm:text-xl lg:text-2xl font-bold font-serif;
+  @apply text-lg sm:text-xl lg:text-2xl font-bold font-serif leading-6;
 }
 h3 {
-  @apply text-base sm:text-lg lg:text-xl font-bold font-serif;
+  @apply text-base sm:text-lg lg:text-xl font-bold font-serif leading-5;
 }
 h4 {
   @apply text-xs sm:text-sm font-bold font-serif;
