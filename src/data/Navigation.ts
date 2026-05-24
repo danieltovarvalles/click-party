@@ -18,11 +18,17 @@ const categoryFooterItems: NavItem[] = categories.map((category) => ({
   href: '/#categories',
 }));
 
-const startupFooterItems: NavItem[] = startups.map((startup) => ({
-  label: startup.name,
-  href: startup.mainPageUrl,
-  openOnNewTab: true,
-}));
+const startupFooterItems: NavItem[] = startups.flatMap((startup) =>
+  startup.mainPageUrl
+    ? [
+        {
+          label: startup.name,
+          href: startup.mainPageUrl,
+          openOnNewTab: true,
+        },
+      ]
+    : [],
+);
 
 export const mainNav: NavItem[] = [
   { label: "Inicio", href: "/#hero" },

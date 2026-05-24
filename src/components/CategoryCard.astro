@@ -1,5 +1,5 @@
 ---
-import type { CategoryColor } from "../data/Categories";
+import { colorClasses, type CategoryColor } from "../utils/colors";
 
 export interface CategoryCardProps {
   category: {
@@ -14,23 +14,13 @@ export interface CategoryCardProps {
 const { category } = Astro.props;
 const Icon = category.icon;
 
-const colorClasses: Record<CategoryColor, string> = {
-  primary: "bg-primary hover:bg-primary/70",
-  secondary: "bg-secondary hover:bg-secondary/70",
-  yellow: "bg-yellow-brand hover:bg-yellow-brand/70",
-  blue: "bg-blue-brand hover:bg-blue-brand/70",
-  orange: "bg-orange-brand hover:bg-orange-brand/70",
-  pink: "bg-pink-brand hover:bg-pink-brand/70",
-  purple: "bg-purple-brand hover:bg-purple-brand/70",
-  gray: "bg-gray-500 hover:bg-gray-400",
-};
 ---
 
 <!-- <a href={category.url} class="flex flex-col gap-2 items-center justify-center cursor-pointer"> -->
 <div class="flex flex-col gap-2 items-center justify-center cursor-pointer w-32">
   <span
     class:list={[
-      "flex flex-col items-center justify-center rounded-full p-3 text-white",
+      "flex flex-col items-center justify-center rounded-full p-3",
       colorClasses[category.color as CategoryColor],
     ]}
   >

@@ -30,15 +30,7 @@ import UserSearch from "../assets/icons/UserSearch.astro";
 import Hearth from "../assets/icons/Hearth.astro";
 import Presentation from "../assets/icons/Presentation.astro";
 import HandShake from "../assets/icons/HandShake.astro";
-export type CategoryColor =
-  | "primary"
-  | "secondary"
-  | "pink"
-  | "yellow"
-  | "blue"
-  | "orange"
-  | "gray"
-  | "purple"
+
 
 export const categories:CategoryCardProps['category'][] = [
   {

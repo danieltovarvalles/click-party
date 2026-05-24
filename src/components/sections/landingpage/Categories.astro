@@ -1,17 +1,22 @@
 ---
-import { categories } from "../../data/Categories";
-import CategoryCard from "../CategoryCard.astro";
-import Button from "../inputs/Button.astro";
-import ChevronLeft from "../../assets/icons/ChevronLeft.astro";
-import ChevronRight from "../../assets/icons/ChevronRight.astro";
+import { categories } from "../../../data/Categories";
+import CategoryCard from "../../CategoryCard.astro";
+import Button from "../../inputs/Button.astro";
+import ChevronLeft from "../../../assets/icons/ChevronLeft.astro";
+import ChevronRight from "../../../assets/icons/ChevronRight.astro";
 ---
 
 <section
   id="categories"
-  class="flex flex-col gap-4 rounded-xl bg-white/50 p-6"
+  class="flex flex-col gap-4 rounded-xl bg-white/70 p-6"
   aria-labelledby="categories-heading"
 >
-  <h3 id="categories-heading">EXPLORA NUESTRAS CATEGORÍAS</h3>
+  <h3 
+    id="categories-heading" 
+    class="text-primary"
+  >
+    EXPLORA NUESTRAS CATEGORÍAS
+  </h3>
 
   <div class="relative xl:static" data-categories-carousel>
     <button
@@ -61,5 +66,5 @@ import ChevronRight from "../../assets/icons/ChevronRight.astro";
 </section>
 
 <script>
-  import "../../scripts/categories-carousel.ts";
+  import "../../../scripts/categories-carousel.ts";
 </script>

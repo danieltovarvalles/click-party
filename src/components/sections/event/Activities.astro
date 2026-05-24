@@ -1,0 +1,60 @@
+---
+import { eventActivities } from "../../../data/EventActivities";
+import CategoryCard from "../../CategoryCard.astro";
+import Button from "../../inputs/Button.astro";
+import ChevronLeft from "../../../assets/icons/ChevronLeft.astro";
+import ChevronRight from "../../../assets/icons/ChevronRight.astro";
+import ActivityCard from "../../ActivityCard.astro";
+---
+
+<section
+  id="categories"
+  class="flex flex-col gap-4 rounded-xl bg-secondary/30 p-6"
+  aria-labelledby="categories-heading"
+>
+  <h3 
+    id="categories-heading"
+    class="text-secondary"
+  >
+    DESCUBRE NUESTRAS ACTIVIDADES
+  </h3>
+
+  <div class="relative" data-categories-carousel>
+    <button
+      type="button"
+      data-carousel-prev
+      class="absolute left-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full
+      bg-white/50 text-secondary shadow-md transition hover:bg-secondary-light/70 
+      disabled:pointer-events-none disabled:opacity-40 "
+      aria-label="Ver categorías anteriores"
+    >
+      <ChevronLeft />
+    </button>
+
+    <div
+      data-carousel-track
+      class="categories-track flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      tabindex="0"
+      aria-label="Lista de actividades"
+    >
+    {eventActivities.map((activity) => (
+        <ActivityCard activity={activity} />
+    ))}
+    </div>
+
+    <button
+      type="button"
+      data-carousel-next
+      class="absolute right-0 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full
+    bg-white/50 text-secondary shadow-md transition hover:bg-secondary-light/70 
+      disabled:pointer-events-none disabled:opacity-40"
+      aria-label="Ver categorías siguientes"
+    >
+      <ChevronRight />
+    </button>
+  </div>
+</section>
+
+<script>
+  import "../../../scripts/categories-carousel.ts";
+</script>

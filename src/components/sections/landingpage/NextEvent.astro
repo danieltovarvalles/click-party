@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+import Button from "../../inputs/Button.astro";
+import EventCountdown from "../../EventCountdown.astro";
+import fatherEvent from "../../../assets/images/FatherDay.jpg";
+---
+
+<section
+  id="next-event"
+  class="grid grid-cols-12 gap-6 p-6 bg-primary/20 rounded-xl"
+  aria-labelledby="next-event-heading"
+>
+  <div class="col-span-12 md:col-span-4 flex flex-col gap-4">
+    <h3 class="text-primary">CELEBREMOS A PAPÁ</h3>
+    <p class="font-medium">
+      Acompáñanos en nuestro evento inaugural donde celebraremos el Día del Padre en un
+      ambiente lleno de diversión y experiencias para toda la familia.
+    </p>
+    <p class="font-medium">
+      Disfruta de sorteos, actividades, sorpresas y la oportunidad
+      de conocer a los emprendimientos que forman parte de Click & Party, una
+      comunidad creada para hacer más fácil la
+      organización de eventos.
+    </p>
+    <!-- <Button
+      variant="filled"
+      color="primary"
+      label="Mas información"
+      href="event"
+    /> -->
+  </div>
+  <div class="col-span-12 md:col-span-5 flex items-center">
+    <EventCountdown
+      targetDate="2026-06-21T16:00:00-06:00"
+      dateLabel="21 de junio, 2026"
+      timeLabel="4:00 PM"
+      locationLabel="Torreón, Coahuila"
+      heading="Faltan para nuestro evento"
+    />
+  </div>
+  <div
+    class="col-span-12 md:col-span-3 [contain:layout_style_paint] flex flex-col gap-2"
+  >
+    <Image
+      src={fatherEvent}
+      alt="Next Event"
+      transition:name="eventFathersDay"
+      class="h-full rounded-lg object-cover object-[85%_center]"
+      inferSize
+    />
+    <Button
+      variant="filled"
+      color="primary"
+      label="Mas información"
+      class="pointer"
+      href="event"
+    />
+  </div>
+</section>
