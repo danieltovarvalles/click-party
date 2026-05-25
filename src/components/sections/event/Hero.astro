@@ -5,6 +5,11 @@ import MapPin from "../../../assets/icons/MapPin.astro";
 import heroEvent from "../../../assets/images/FatherDay.jpg";
 import Calendar from "../../../assets/icons/Calendar.astro";
 import Clock from "../../../assets/icons/Clock4.astro";
+import CalendarSmile from "../../../assets/icons/CalendarSmile.astro";
+import { buildGoogleCalendarUrl } from "../../../data/fatherDayEvent";
+import Heart from "../../../assets/icons/Hearth.astro";
+
+const calendarUrl = buildGoogleCalendarUrl();
 ---
 
 <section
@@ -13,35 +18,70 @@ import Clock from "../../../assets/icons/Clock4.astro";
   aria-labelledby="hero-heading"
 >
   <div
-    class="relative z-10 flex flex-col center gap-6 py-4 sm:py-8 w-1/2 sm:w-[35%] h-full"
+    class="relative z-10 flex flex-col center gap-6 py-4 sm:py-8 w-[60%] sm:w-[35%] h-full"
   >
-    <h1>Celebremos juntos el <span class="text-secondary">Día del Padre</span></h1>
+    <h1>
+      Celebremos juntos el <span class="text-secondary">Día del Padre</span>
+    </h1>
     <p class="font-medium">
-      Un evento para toda la familia donde podrás conocer emprendimientos locales, disfrutar actividades para los peques, muestras gratis y ganar increibles premios.
+      Un evento para toda la familia donde podrás conocer emprendimientos
+      locales, disfrutar actividades para los peques, muestras gratis y ganar
+      increibles premios.
     </p>
-   
+
     <div class="flex flex-wrap gap-x-4 gap-y-2">
       <div class="flex gap-2 items-center min-w-44">
-        <MapPin class="bg-gray-100/50 rounded-full p-2 w-10 h-10 text-secondary" strokeWidth={2}/>
+        <MapPin
+          class="bg-gray-100/50 rounded-full p-2 w-10 h-10 text-secondary"
+          strokeWidth={2}
+        />
         <div>
           <p class="font-semibold">Torreón, Coah.</p>
           <p>Lugar por confirmar</p>
         </div>
       </div>
       <div class="flex gap-2 items-center">
-        <Calendar class="bg-gray-100/50 rounded-full p-2 w-10 h-10 text-secondary" strokeWidth={2}/>
+        <Calendar
+          class="bg-gray-100/50 rounded-full p-2 w-10 h-10 text-secondary"
+          strokeWidth={2}
+        />
         <div>
           <p class="font-semibold">21 de junio, 2026</p>
           <p>Domingo</p>
         </div>
       </div>
       <div class="flex gap-2 items-center">
-        <Clock class="bg-gray-100/50 rounded-full p-2 w-10 h-10 text-secondary" strokeWidth={2}/>
+        <Clock
+          class="bg-gray-100/50 rounded-full p-2 w-10 h-10 text-secondary"
+          strokeWidth={2}
+        />
         <div>
           <p class="font-semibold">4:00 PM</p>
           <p>Horario del evento</p>
         </div>
       </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <Button
+        id="event-interest-btn"
+        variant="filled"
+        color="secondary"
+        class="w-full lg:w-auto flex gap-1"
+      >
+        <Heart class="w-6 h-6" />
+      </Button>
+      <Button
+        id="event-calendar-btn"
+        href={calendarUrl}
+        target="_blank"
+        variant="outlined"
+        color="secondary"
+        aria-label="Agregar el evento Día del Padre a Google Calendar"
+        class="w-full lg:w-auto flex gap-1"
+      >
+        <CalendarSmile class="w-6 h-6" strokeWidth={2} /> Agendar
+      </Button>
     </div>
   </div>
   <div
@@ -52,7 +92,7 @@ import Clock from "../../../assets/icons/Clock4.astro";
     >
       <Image
         src={heroEvent}
-        alt="Personas celebrando en un evento"
+        alt="Hija abrazando a su Papá"
         transition:name="eventFathersDay"
         width={1200}
         height={600}
@@ -61,3 +101,8 @@ import Clock from "../../../assets/icons/Clock4.astro";
     </div>
   </div>
 </section>
+
+<script>
+  import "../../../scripts/event-interest.ts";
+  import "../../../scripts/event-calendar.ts";
+</script>

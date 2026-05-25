@@ -4,27 +4,27 @@ import type { ImageOrIcon, LogoPresentation } from "../data/Startups";
 import { isImageMetadata } from "../utils/isImageMetadata";
 import Whatsapp from "../assets/icons/Whatsapp.astro";
 import Facebook from "../assets/icons/Facebook.astro";
-import Empty from "../assets/startups/EmptyImage.png"
+import Empty from "../assets/startups/EmptyImage.png";
 
 export interface StartupCardProps {
   startup: {
     id: number;
     name: string;
-    description: string;
-    image: ImageOrIcon;
+    description?: string;
+    image?: ImageOrIcon;
     logo?: ImageOrIcon;
     logoPresentation?: LogoPresentation;
     phone?: string;
     facebook?: string;
-    mainPageUrl: string;
-    categoryIds: number[];
+    mainPageUrl?: string;
+    categoryIds?: number[];
   };
 }
 
 const { startup } = Astro.props;
 
-const coverImage = isImageMetadata(startup.image) ? startup.image : undefined;
-const CoverIcon = !isImageMetadata(startup.image) ? startup.image : undefined;
+const coverImage = startup.image && isImageMetadata(startup.image) ? startup.image : undefined;
+const CoverIcon = startup.image && !isImageMetadata(startup.image) ? startup.image : undefined;
 
 const logoImage =
   startup.logo && isImageMetadata(startup.logo) ? startup.logo : undefined;
@@ -49,76 +49,136 @@ function mediaAlt(name: string, kind: "cover" | "logo") {
   return kind === "cover" ? name : `Logo de ${name}`;
 }
 
-const message = encodeURIComponent(
-  `Hola, vi tu perfil en Click & Party y me gustaría más información sobre tus servicios`,
+const messageText = encodeURIComponent(
+  `¡Hola! Vi su perfil de ${startup.name} en Click & Party y quisiera conocer más detalles sobre sus servicios.`,
 );
+
+const providerId = String(startup.id);
 ---
 
 <div
   class="group w-44 md:w-52 h-full flex flex-col rounded-2xl overflow-hidden bg-white shadow-md"
+  data-startup-card
 >
-  <a href={startup.mainPageUrl} target="_blank">
-    <div class="relative">
-      {
-        CoverIcon ? <CoverIcon class="w-full h-36 md:h-44 object-cover" /> :
-        <Image
-          src={coverImage ?? Empty}
-          alt={mediaAlt(startup.name, "cover")}
-          class="w-full h-36 md:h-44 object-cover"
-          inferSize
-        />
-      }
-
-      <div class="absolute left-1/2 bottom-0 translate-y-1/2 -translate-x-1/2">
-        <div class={logoContainerClass}>
+  {
+    startup.mainPageUrl ? (
+      <a
+        href={startup.mainPageUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-event="provider_view"
+        data-provider-id={providerId}
+        class="block"
+      >
+        <div class="relative">
           {
-            logoImage ? (
+            CoverIcon ? (
+              <CoverIcon class="w-full h-36 md:h-44 object-cover" />
+            ) : (
               <Image
-                src={logoImage}
-                alt={mediaAlt(startup.name, "logo")}
-                class={logoImageClass}
+                src={coverImage ?? Empty}
+                alt={mediaAlt(startup.name, "cover")}
+                class="w-full h-36 md:h-44 object-cover"
                 inferSize
               />
-            ) : (
-              LogoIcon && <LogoIcon class={logoImageClass} />
             )
           }
+
+          <div class="absolute left-1/2 bottom-0 translate-y-1/2 -translate-x-1/2">
+            <div class={logoContainerClass}>
+              {
+                logoImage ? (
+                  <Image
+                    src={logoImage}
+                    alt={mediaAlt(startup.name, "logo")}
+                    class={logoImageClass}
+                    inferSize
+                  />
+                ) : (
+                  LogoIcon && <LogoIcon class={logoImageClass} />
+                )
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-1 mt-4 p-3 md:p-4 text-center">
+          <h5 class="text-base font-bold">{startup.name}</h5>
+          {startup.description && <p>{startup.description}</p>}
+        </div>
+      </a>
+    ) : (
+      <div>
+        <div class="relative">
+          {
+            CoverIcon ? (
+              <CoverIcon class="w-full h-36 md:h-44 object-cover" />
+            ) : (
+              <Image
+                src={coverImage ?? Empty}
+                alt={mediaAlt(startup.name, "cover")}
+                class="w-full h-36 md:h-44 object-cover"
+                inferSize
+              />
+            )
+          }
+
+          <div class="absolute left-1/2 bottom-0 translate-y-1/2 -translate-x-1/2">
+            <div class={logoContainerClass}>
+              {
+                logoImage ? (
+                  <Image
+                    src={logoImage}
+                    alt={mediaAlt(startup.name, "logo")}
+                    class={logoImageClass}
+                    inferSize
+                  />
+                ) : (
+                  LogoIcon && <LogoIcon class={logoImageClass} />
+                )
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-1 mt-4 p-3 md:p-4 text-center">
+          <h5 class="text-base font-bold">{startup.name}</h5>
+          {startup.description && <p>{startup.description}</p>}
         </div>
       </div>
-    </div>
+    )
+  }
 
-    <div class="flex-1 mt-4 p-3 md:p-4 h-full text-center flex flex-col gap-2 justify-between">
-      <h5 class="text-base font-bold">
-        {startup.name}
-      </h5>
-
-      <p>{startup.description}</p>
-      <div>
-        {
-          startup?.phone && (
-            <a
-              href={`https://wa.me/${startup.phone}?text=${message}`}
-              target="_blank"
-              class="text-secondary flex items-center justify-center gap-1"
-            >
-              <Whatsapp class="h-4 w-4 md:h-6 md:w-6" />
-              Contactar
-            </a>
-          )
-        }
-        {
-          startup?.facebook && (
-            <a
-              href={`https://m.me/${startup.facebook}`}
-              target="_blank"
-              class="text-blue-brand flex items-center justify-center gap-1"
-            >
-              <Facebook class="h-4 w-4 md:h-6 md:w-6" />
-              Contactar
-            </a>
-          )
-        }
-      </div>
-    </div>
-  </a>
+  <div class="pb-4 flex flex-col gap-2">
+    {
+      startup.phone && (
+        <a
+          href={`https://wa.me/${startup.phone}?text=${messageText}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-event="whatsapp_click"
+          data-provider-id={providerId}
+          class="text-secondary flex items-center justify-center gap-1"
+        >
+          <Whatsapp class="h-4 w-4 md:h-6 md:w-6" />
+          Contactar
+        </a>
+      )
+    }
+    {
+      startup.facebook && (
+        <a
+          href={`https://m.me/${startup.facebook}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-track-event="messenger_click"
+          data-provider-id={providerId}
+          class="text-blue-brand flex items-center justify-center gap-1"
+        >
+          <Facebook class="h-4 w-4 md:h-6 md:w-6" />
+          Contactar
+        </a>
+      )
+    }
+  </div>
 </div>
