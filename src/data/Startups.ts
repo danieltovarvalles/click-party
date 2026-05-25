@@ -12,6 +12,7 @@ import coverMBBites from "../assets/startups/M-B-Bites_cover.jpeg"
 import logoBaluna from "../assets/startups/Baluna_logo.jpeg"
 import coverBaluna from "../assets/startups/Baluna_cover.jpeg"
 import logoJassania from "../assets/startups/Jassania_logo.jpeg"
+import coverJassania from "../assets/startups/Jassania_cover.jpeg"
 
 
 export type ImageOrIcon = ImageMetadata | typeof logo9293Craft;
@@ -107,8 +108,9 @@ export const startups: Startup[] = [
   {
     id: 7,
     name: "Jassania",
-    description: "Decoración, flores.",
+    description: "Flores que alegran.",
     logo: logoJassania,
+    image: coverJassania,
     // logoPresentation: {
     //   imageClass: "scale-110",
     // },
