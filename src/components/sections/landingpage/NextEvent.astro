@@ -3,6 +3,8 @@ import { Image } from "astro:assets";
 import Button from "../../inputs/Button.astro";
 import EventCountdown from "../../EventCountdown.astro";
 import fatherEvent from "../../../assets/images/FatherDay.jpg";
+
+const { showButton } = Astro.props;
 ---
 
 <section
@@ -13,14 +15,14 @@ import fatherEvent from "../../../assets/images/FatherDay.jpg";
   <div class="col-span-12 md:col-span-4 flex flex-col gap-4">
     <h3 class="text-primary">CELEBREMOS A PAPÁ</h3>
     <p class="font-medium">
-      Acompáñanos en nuestro evento inaugural donde celebraremos el Día del Padre en un
-      ambiente lleno de diversión y experiencias para toda la familia.
+      Acompáñanos en nuestro evento inaugural donde celebraremos el Día del
+      Padre en un ambiente lleno de diversión y experiencias para toda la
+      familia.
     </p>
     <p class="font-medium">
-      Disfruta de sorteos, actividades, sorpresas y la oportunidad
-      de conocer a los emprendimientos que forman parte de Click & Party, una
-      comunidad creada para hacer más fácil la
-      organización de eventos.
+      Disfruta de sorteos, actividades, sorpresas y la oportunidad de conocer a
+      los emprendimientos que forman parte de Click & Party, una comunidad
+      creada para hacer más fácil la organización de eventos.
     </p>
     <!-- <Button
       variant="filled"
@@ -48,12 +50,16 @@ import fatherEvent from "../../../assets/images/FatherDay.jpg";
       class="h-full rounded-lg object-cover object-[85%_center]"
       inferSize
     />
-    <Button
-      variant="filled"
-      color="primary"
-      label="Mas información"
-      class="pointer"
-      href="event"
-    />
+    {
+      showButton && (
+        <Button
+          variant="filled"
+          color="primary"
+          label="Mas información"
+          class="pointer"
+          href="event"
+        />
+      )
+    }
   </div>
 </section>
