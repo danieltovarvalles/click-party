@@ -57,7 +57,7 @@ const providerId = String(startup.id);
 ---
 
 <div
-  class="group w-44 md:w-52 h-full flex flex-col rounded-2xl overflow-hidden bg-white shadow-md"
+  class="group w-44 md:w-52 h-full flex flex-col rounded-2xl overflow-hidden bg-white shadow-sm"
   data-startup-card
 >
   {
@@ -149,7 +149,7 @@ const providerId = String(startup.id);
     )
   }
 
-  <div class="pb-4 flex flex-col gap-2">
+  <div class="pb-4 flex flex-1 justify-end flex-col gap-2">
     {
       startup.phone && (
         <a
@@ -179,6 +179,7 @@ const providerId = String(startup.id);
           Contactar
         </a>
       )
-    }
+    } 
+    {!startup.phone && !startup.facebook && <div></div>}
   </div>
 </div>

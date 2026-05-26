@@ -65,26 +65,31 @@ const calendarUrl = buildGoogleCalendarUrl();
     <div class="flex flex-wrap gap-2">
       <Button
         id="event-interest-btn"
+        label="Me interesa"
+        icon={Heart}
+        iconClass="w-6 h-6"
+        iconStrokeWidth={2}
         variant="filled"
         color="secondary"
-        class="w-full lg:w-auto flex gap-1"
-      >
-        <Heart class="w-6 h-6" />
-      </Button>
+        class="w-full lg:w-auto"
+      />
       <Button
         id="event-calendar-btn"
         href={calendarUrl}
         target="_blank"
+        label="Agendar"
+        icon={CalendarSmile}
+        iconClass="w-6 h-6"
+        iconStrokeWidth={2}
         variant="outlined"
         color="secondary"
         aria-label="Agregar el evento Día del Padre a Google Calendar"
-        class="w-full lg:w-auto flex gap-1"
-      >
-        <CalendarSmile class="w-6 h-6" strokeWidth={2} /> Agendar
-      </Button>
+        class="w-full lg:w-auto"
+      />
     </div>
   </div>
   <div
+    transition:name="eventFathersDay"
     class="absolute inset-x-0 top-0 w-full overflow-hidden h-full sm:h-auto flex-1 flex flex-col"
   >
     <div
@@ -93,7 +98,6 @@ const calendarUrl = buildGoogleCalendarUrl();
       <Image
         src={heroEvent}
         alt="Hija abrazando a su Papá"
-        transition:name="eventFathersDay"
         width={1200}
         height={600}
         class="h-full w-auto max-h-none object-cover object-[85%_center]"

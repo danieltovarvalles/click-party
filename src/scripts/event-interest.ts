@@ -6,7 +6,11 @@ const STORAGE_KEY = "event-interest-dia-padre-2026";
 function setInterestedState(button: HTMLButtonElement, interested: boolean) {
   button.disabled = interested;
   button.setAttribute("aria-disabled", String(interested));
-  button.textContent = interested ? "Te esperamos " : "Me interesa";
+
+  const label = button.querySelector("[data-button-label]");
+  if (label) {
+    label.textContent = interested ? "Te esperamos" : "Me interesa";
+  }
 }
 
 function isInterested(): boolean {

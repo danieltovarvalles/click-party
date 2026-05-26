@@ -1,15 +1,14 @@
 ---
-import { Image } from "astro:assets";
 import Button from "../../inputs/Button.astro";
 import MapPin from "../../../assets/icons/MapPin.astro";
-import hero from "../../../assets/images/hero.jpg";
+import heroVideo from "../../../assets/video/video.mp4";
 import Star from "../../../assets/icons/Star.astro";
 import Hearth from "../../../assets/icons/Hearth.astro";
 ---
 
 <section
   id="hero"
-  class="relative flex items-center justify-between gap-4 sm:gap-8 max-h-[50rem] overflow-hidden"
+  class="relative flex min-h-[18rem] sm:min-h-[28rem] items-center justify-between gap-4 sm:gap-8 max-h-[50rem] overflow-hidden"
   aria-labelledby="hero-heading"
 >
   <div
@@ -17,11 +16,13 @@ import Hearth from "../../../assets/icons/Hearth.astro";
   >
     <h1>
       Organiza tu evento
-      <span class="text-primary">sin estrés</span>
+      <span class="text-secondary">sin estrés</span>
     </h1>
     <p class="font-medium">
-      Conecta con proveedores locales confiables, compara opciones y encuentra
-      todo lo que necesitas para celebrar momentos inolvidables.
+      Conecta con proveedores, compara opciones y encuentra todo lo que necesitas para celebrar momentos inolvidables.
+    </p>
+    <p class="font-medium">
+      Todo para tu evento en un solo lugar: descubre servicios, organiza detalles y ahorra tiempo mientras planeas una celebración perfecta.
     </p>
     <div class="flex gap-2">
       <MapPin class="h-10 w-10 text-secondary" />
@@ -38,12 +39,21 @@ import Hearth from "../../../assets/icons/Hearth.astro";
       class="w-52"
     />
   </div>
-  <div class="absolute inset-x-0 top-0 w-full overflow-hidden h-full sm:h-auto flex-1 flex flex-col">
-    <div class="[mask-image:linear-gradient(to_right,transparent_25%,black_50%,black_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_25%,black_50%,black_100%)] h-full">
-      <Image
-        src={hero}
-        alt="Personas celebrando en un evento"
-        class="h-full w-auto max-h-none object-cover"
+  <div
+    class="absolute inset-0  overflow-hidden"
+    aria-hidden="true"
+  >
+    <div
+      class="relative h-full min-h-[18rem] sm:min-h-[28rem] [mask-image:linear-gradient(to_right,transparent_25%,black_50%,black_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_25%,black_50%,black_100%)]"
+    >
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        src={heroVideo}
+        class="h-full w-full object-cover object-center"
       />
     </div>
   </div>

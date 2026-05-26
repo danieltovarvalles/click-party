@@ -1,78 +1,84 @@
 ---
 export interface Props {
-  variant?: 'filled' | 'outlined' | 'ghosted';
-  color?: 'primary' | 'secondary' | 'blue' | 'yellow';
+  variant?: "filled" | "outlined" | "ghosted";
+  color?: "primary" | "secondary" | "blue" | "yellow";
   label?: string;
+  icon?: any;
+  iconClass?: string;
+  iconStrokeWidth?: number;
   href?: string;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
   class?: string;
-  target?: '_blank' | '_self' | '_parent' | '_top';
+  target?: "_blank" | "_self" | "_parent" | "_top";
   rel?: string;
   disabled?: boolean;
   id?: string;
-  'aria-label'?: string;
+  "aria-label"?: string;
 }
 
 const {
-  variant = 'filled',
-  color = 'primary',
+  variant = "filled",
+  color = "primary",
   label,
+  icon: Icon,
+  iconClass = "h-5 w-5 shrink-0",
+  iconStrokeWidth,
   href,
-  type = 'button',
-  class: className = '',
+  type = "button",
+  class: className = "",
   target,
   rel,
   disabled = false,
   id,
-  'aria-label': ariaLabel,
+  "aria-label": ariaLabel,
 } = Astro.props;
 
-type Variant = NonNullable<Props['variant']>;
-type Color = NonNullable<Props['color']>;
+type Variant = NonNullable<Props["variant"]>;
+type Color = NonNullable<Props["color"]>;
 
 const variantClasses: Record<Color, Record<Variant, string>> = {
   primary: {
     filled:
-      'border-2 border-transparent bg-primary text-white shadow-sm hover:bg-primary/90 focus-visible:ring-primary',
+      "border-2 border-transparent bg-primary text-white shadow-sm hover:bg-primary/90 focus-visible:ring-primary",
     outlined:
-      'border-2 border-primary bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary',
+      "border-2 border-primary bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary",
     ghosted:
-      'bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary',
+      "bg-transparent text-primary hover:bg-primary/10 focus-visible:ring-primary",
   },
   secondary: {
     filled:
-      'border-2 border-transparent bg-secondary text-white shadow-sm hover:bg-secondary/90 focus-visible:ring-secondary',
+      "border-2 border-transparent bg-secondary text-white shadow-sm hover:bg-secondary/90 focus-visible:ring-secondary",
     outlined:
-      'border-2 border-secondary bg-transparent text-secondary hover:bg-secondary/10 focus-visible:ring-secondary',
+      "border-2 border-secondary bg-transparent text-secondary hover:bg-secondary/10 focus-visible:ring-secondary",
     ghosted:
-      'bg-transparent text-secondary hover:bg-secondary/10 focus-visible:ring-secondary',
+      "bg-transparent text-secondary hover:bg-secondary/10 focus-visible:ring-secondary",
   },
   blue: {
     filled:
-      'border-2 border-transparentbg-blue text-white shadow-sm hover:bg-blue/90 focus-visible:ring-blue',
+      "border-2 border-transparent bg-blue text-white shadow-sm hover:bg-blue/90 focus-visible:ring-blue",
     outlined:
-      'border-2 border-blue bg-transparent text-blue hover:bg-blue/10 focus-visible:ring-blue',
+      "border-2 border-blue bg-transparent text-blue hover:bg-blue/10 focus-visible:ring-blue",
     ghosted:
-      'bg-transparent text-blue hover:bg-blue/10 focus-visible:ring-blue',
+      "bg-transparent text-blue hover:bg-blue/10 focus-visible:ring-blue",
   },
   yellow: {
     filled:
-      'border-2 border-transparent bg-yellow  shadow-sm hover:bg-yellow/90 focus-visible:ring-yellow',
+      "border-2 border-transparent bg-yellow shadow-sm hover:bg-yellow/90 focus-visible:ring-yellow",
     outlined:
-      'border-2 border-yellow bg-transparent text-yellow hover:bg-yellow/10 focus-visible:ring-yellow',
+      "border-2 border-yellow bg-transparent text-yellow hover:bg-yellow/10 focus-visible:ring-yellow",
     ghosted:
-      'bg-transparent text-yellow hover:bg-yellow/10 focus-visible:ring-yellow',
+      "bg-transparent text-yellow hover:bg-yellow/10 focus-visible:ring-yellow",
   },
 };
 
 const isDisabled = disabled === true;
 
 const baseClasses =
-  'inline-flex items-center justify-center rounded-full px-3 sm:px-6 py-1.5 sm:py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2';
+  "inline-flex items-center justify-center gap-2 rounded-full px-3 sm:px-6 py-1.5 sm:py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
 const disabledClasses = isDisabled
-  ? 'pointer-events-none cursor-not-allowed opacity-50'
-  : '';
+  ? "pointer-events-none cursor-not-allowed opacity-50"
+  : "";
 
 const classes = [
   baseClasses,
@@ -81,9 +87,9 @@ const classes = [
   className,
 ]
   .filter(Boolean)
-  .join(' ');
+  .join(" ");
 
-const linkRel = target === '_blank' ? rel ?? 'noopener noreferrer' : rel;
+const linkRel = target === "_blank" ? (rel ?? "noopener noreferrer") : rel;
 const renderAsLink = Boolean(href) && !isDisabled;
 ---
 
@@ -97,7 +103,14 @@ const renderAsLink = Boolean(href) && !isDisabled;
       rel={linkRel}
       aria-label={ariaLabel}
     >
-      <slot>{label}</slot>
+      {Icon && (
+        <Icon
+          class={iconClass}
+          strokeWidth={iconStrokeWidth}
+          aria-hidden="true"
+        />
+      )}
+      {label ? <span data-button-label>{label}</span> : <slot />}
     </a>
   ) : (
     <button
@@ -108,7 +121,14 @@ const renderAsLink = Boolean(href) && !isDisabled;
       aria-disabled={isDisabled ? true : undefined}
       aria-label={ariaLabel}
     >
-      <slot>{label}</slot>
+      {Icon && (
+        <Icon
+          class={iconClass}
+          strokeWidth={iconStrokeWidth}
+          aria-hidden="true"
+        />
+      )}
+      {label ? <span data-button-label>{label}</span> : <slot />}
     </button>
   )
 }

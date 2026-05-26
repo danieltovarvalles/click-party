@@ -31,11 +31,11 @@ const startupFooterItems: NavItem[] = startups.flatMap((startup) =>
 );
 
 export const mainNav: NavItem[] = [
-  { label: "Inicio", href: "/#hero" },
-  { label: "Servicios", href: "/#startups" },
-  { label: "Nosotros", href: "/#why-click-party" },
+  { label: "Inicio", href: "/" },
   { label: "Eventos", href: "/#next-event" },
+  { label: "Servicios", href: "/#startups" },
   { label: "Categorías", href: "/#categories" },
+  { label: "Nosotros", href: "/informacion#nosotros" },
 ];
 
 export const footerNav: FooterNavItem[] = [

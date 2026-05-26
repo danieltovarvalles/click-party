@@ -12,7 +12,7 @@ export default {
         'primary': "#f43f5e",
         'secondary': "#0DA8A8",
         'black-brand': "#2E2F2F",
-        'white-brand': "#FAFAFA",
+        'white-brand': "#F7F7F7",
 
         'primary-light': "#ffe4e6",
         'secondary-light': "#dcfffa",
