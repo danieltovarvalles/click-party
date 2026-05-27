@@ -13,7 +13,10 @@ import logoBaluna from "../assets/startups/Baluna_logo.jpeg"
 import coverBaluna from "../assets/startups/Baluna_cover.jpeg"
 import logoJassania from "../assets/startups/Jassania_logo.jpeg"
 import coverJassania from "../assets/startups/Jassania_cover.jpeg"
-
+import logoAndany from "../assets/startups/Andany_logo.jpeg"
+import coverAndany from "../assets/startups/Andany_cover.jpeg"
+import logoDecco from "../assets/startups/DeccoDaisyAtelier_logo.jpeg"
+import coverDecco from "../assets/startups/DeccoDaisyAtelier_cover.jpeg"
 
 export type ImageOrIcon = ImageMetadata | typeof logo9293Craft;
 
@@ -36,6 +39,11 @@ export type Startup = {
   categoryIds?: number[];
 };
 
+
+const messageText = (startupName: string) => {
+  return encodeURIComponent(`¡Hola! Vi su perfil de ${startupName} en Click & Party y quisiera conocer más detalles sobre sus servicios.`);
+};
+
 export const startups: Startup[] = [
   {
     id: 1,
@@ -47,6 +55,7 @@ export const startups: Startup[] = [
       imageClass: "p-1",
     },
     phone: "528711068211",
+    whatsappUrl: `https://wa.me/528711068211?text=${messageText("9293 Craft")}`,
     mainPageUrl: "https://www.instagram.com/9293craft/",
   },
   {
@@ -59,10 +68,11 @@ export const startups: Startup[] = [
       imageClass: "p-1",
     },
     phone: "528714150303",
+    whatsappUrl: `https://wa.me/528714150303?text=${messageText("BANED")}`,
   },
   {
     id: 5,
-    name: "M & B Bites",
+    name: "M&B Bites",
     description: "Snack bar y decoraciones.",
     image: coverMBBites,
     logo: logoMBBites,
@@ -70,6 +80,7 @@ export const startups: Startup[] = [
       imageClass: "p-2",
     },
     phone: "528715683714",
+    whatsappUrl: `https://wa.me/528715683714?text=${messageText("M&B Bites")}`,
     mainPageUrl: "https://www.facebook.com/profile.php?id=61587287816267",
   },
   {
@@ -94,6 +105,7 @@ export const startups: Startup[] = [
       imageClass: "scale-110",
     },
     phone: "528721373025",
+    whatsappUrl: `https://wa.me/528721373025?text=${messageText("Altagracia Eventos")}`,
     mainPageUrl: "https://www.facebook.com/profile.php?id=61554953079082",
   },
   {
@@ -103,6 +115,7 @@ export const startups: Startup[] = [
     image: coverBaluna,
     logo: logoBaluna,
     phone: "528717962675",
+    whatsappUrl: `https://wa.me/528717962675?text=${messageText("Baluna")}`,
     mainPageUrl: "https://www.instagram.com/baluna.creativecrafts?igsh=MWYxMDQ5bGVxdDVkaQ%3D%3D&utm_source=qr"
   },
   {
@@ -116,5 +129,24 @@ export const startups: Startup[] = [
     // },
     // phone: "528721373025",
     // mainPageUrl: "https://www.facebook.com/profile.php?id=61554953079082",
+  },
+  {
+    id: 8,
+    name: "Andany",
+    description: "DJ, iluminación, snacks y mucho más.",
+    logo: logoAndany,
+    image: coverAndany,
+    phone: "528719192667",
+    whatsappUrl: "https://wa.me/message/VKWN5TH7ESJ4O1",
+    mainPageUrl: "https://www.facebook.com/profile.php?id=61551617953737",
+  },
+  {
+    id: 9,
+    name: "Decco Daisy Atelier",
+    description: "Velas artesanales personalizadas.",
+    logo: logoDecco,
+    image: coverDecco,
+    facebook: "61584641774675",
+    mainPageUrl: "https://deccodaisyatelier.my.canva.site/",
   },
 ];

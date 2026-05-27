@@ -151,9 +151,9 @@ const providerId = String(startup.id);
 
   <div class="pb-4 flex flex-1 justify-end flex-col gap-2">
     {
-      startup.phone && (
+      startup.whatsappUrl && (
         <a
-          href={`https://wa.me/${startup.phone}?text=${messageText}`}
+          href={startup.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           data-track-event="whatsapp_click"
