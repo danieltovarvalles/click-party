@@ -7,16 +7,20 @@ import logoFiestaPlus from "../assets/startups/FiestaPlus_Logo.jpeg";
 import coverFiestaPlus from "../assets/startups/FiestaPlus_Photo.jpg";
 import logoAltagracia from "../assets/startups/Altagracia_Logo.jpg";
 import coverAltagracia from "../assets/startups/Altagracia_Cover.jpeg";
-import logoMBBites from "../assets/startups/M-B-Bites-Logo.svg"
-import coverMBBites from "../assets/startups/M-B-Bites_cover.jpeg"
-import logoBaluna from "../assets/startups/Baluna_logo.jpeg"
-import coverBaluna from "../assets/startups/Baluna_cover.jpeg"
-import logoJassania from "../assets/startups/Jassania_logo.jpeg"
-import coverJassania from "../assets/startups/Jassania_cover.jpeg"
-import logoAndany from "../assets/startups/Andany_logo.jpeg"
-import coverAndany from "../assets/startups/Andany_cover.jpeg"
-import logoDecco from "../assets/startups/DeccoDaisyAtelier_logo.jpeg"
-import coverDecco from "../assets/startups/DeccoDaisyAtelier_cover.jpeg"
+import logoMBBites from "../assets/startups/M-B-Bites-Logo.svg";
+import coverMBBites from "../assets/startups/M-B-Bites_cover.jpeg";
+import logoBaluna from "../assets/startups/Baluna_logo.jpeg";
+import coverBaluna from "../assets/startups/Baluna_cover.jpeg";
+import logoJassania from "../assets/startups/Jassania_logo.jpeg";
+import coverJassania from "../assets/startups/Jassania_cover.jpeg";
+import logoAndany from "../assets/startups/Andany_logo.jpeg";
+import coverAndany from "../assets/startups/Andany_cover.jpeg";
+import logoDecco from "../assets/startups/DeccoDaisyAtelier_logo.jpeg";
+import coverDecco from "../assets/startups/DeccoDaisyAtelier_cover.jpeg";
+import logoBochornitoPizzas from "../assets/startups/Bochornito_logo.jpeg";
+import coverBochornitoPizzas from "../assets/startups/Bochornito_cover.jpeg";
+import logoLittleDivasSpa from "../assets/startups/LittleDivasSpa_logo.jpeg";
+import coverLittleDivasSpa from "../assets/startups/LittleDivasSpa_cover.jpeg";
 
 export type ImageOrIcon = ImageMetadata | typeof logo9293Craft;
 
@@ -39,9 +43,10 @@ export type Startup = {
   categoryIds?: number[];
 };
 
-
 const messageText = (startupName: string) => {
-  return encodeURIComponent(`¡Hola! Vi su perfil de ${startupName} en Click & Party y quisiera conocer más detalles sobre sus servicios.`);
+  return encodeURIComponent(
+    `¡Hola! Vi su perfil de ${startupName} en Click & Party y quisiera conocer más detalles sobre sus servicios.`,
+  );
 };
 
 export const startups: Startup[] = [
@@ -111,12 +116,14 @@ export const startups: Startup[] = [
   {
     id: 6,
     name: "Baluna",
-    description: "Personalizados creativos para eventos, regalos y momentos especiales.",
+    description:
+      "Personalizados creativos para eventos, regalos y momentos especiales.",
     image: coverBaluna,
     logo: logoBaluna,
     phone: "528717962675",
     whatsappUrl: `https://wa.me/528717962675?text=${messageText("Baluna")}`,
-    mainPageUrl: "https://www.instagram.com/baluna.creativecrafts?igsh=MWYxMDQ5bGVxdDVkaQ%3D%3D&utm_source=qr"
+    mainPageUrl:
+      "https://www.instagram.com/baluna.creativecrafts?igsh=MWYxMDQ5bGVxdDVkaQ%3D%3D&utm_source=qr",
   },
   {
     id: 7,
@@ -148,5 +155,25 @@ export const startups: Startup[] = [
     image: coverDecco,
     facebook: "61584641774675",
     mainPageUrl: "https://deccodaisyatelier.my.canva.site/",
+  },
+  {
+    id: 10,
+    name: "Bochornito Pizzas",
+    description: "Variedad de pizzas caseras, echas al momento",
+    logo: logoBochornitoPizzas,
+    image: coverBochornitoPizzas,
+    phone: "528711766608",
+    whatsappUrl: `https://wa.me/528711766608?text=${messageText("Bochornito Pizzas")}`,
+    mainPageUrl: "https://www.facebook.com/profile.php?id=61563877405158",
+  },
+  {
+    id: 11,
+    name: "Little Divas Spa",
+    description: "Servicio de spa para niñas.",
+    logo: logoLittleDivasSpa,
+    image: coverLittleDivasSpa,
+    phone: "528712396088",
+    whatsappUrl: `https://wa.me/528712396088?text=${messageText("Little Divas Spa")}`,
+    mainPageUrl: "https://www.facebook.com/profile.php?id=61580984664198",
   },
 ];
